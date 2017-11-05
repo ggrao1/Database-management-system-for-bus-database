@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<script type="text/javascript" src="js/PassengerMgmt.js"></script>
+<script type="text/javascript" src="js/TicketMgmt.js"></script>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script>
+    $( document ).ready(function() {
+    	displayPassenger();
+    });</script>
+<title>Search Passenger</title>
+</head>
+<body>
+<h1>Search Passenger</h1>
+<hr>
+<table>
+<tr><td>
+<tr><td><label for="passengerId">Passanger ID: </label></td>
+<td>
+<div id="passengerdiv"></div></td></tr>
+<tr><td><label for="name">Passenger Name: </label></td>
+<td><input type="text" id="name"></input></td></tr>
+<tr><td><label for="phone">Passenger phone: </label></td>
+<td><input type="text" id="phone"></input></td></tr>
+<tr><td><label for="age">Passenger age : </label></td>
+<td><input type="number" id="age"></input></td></tr>
+<tr><td>
+<button id="searchbtn" onclick="searchPassenger()">Search</button></td></tr>
+<div id="resultArea">
+<table id="passresltTable">
+
+</table>
+</div>
+</table>
+</body>
+</html>

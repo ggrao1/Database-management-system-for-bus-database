@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<script type="text/javascript" src="js/BusMgmt.js"></script>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script>
+    $( document ).ready(function() {
+    	displayDepo();
+    });</script>
+<title> Add Bus </title>
+</head>
+<body>
+<h1> Add Bus </h1>
+<hr>
+<table>
+<tr><td><label for="depoNo">Depot: </label></td>
+<td>
+<div id="deposeldiv">
+</div>
+</td></tr>
+<tr><td><label for="capacity">Bus Capacity: </label></td>
+<td><input type="text"  id="capacity"></input></td></tr>
+<tr><td><label for="fromStop">From location: </label></td>
+<td><input type="text" id="fromStop"></input></td></tr>
+<tr><td><label for="toStop">To location: </label></td>
+<td><input type="text" id="toStop"></input></td></tr>
+<tr><td>
+
+<button id="savebtn" onclick="saveBus()">Save</button></td></tr>
+</table>
+</body>
+</html>

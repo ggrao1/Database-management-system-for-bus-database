@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<script type="text/javascript" src="js/EmpMgmt.js"></script>
+<script type="text/javascript" src="js/TicketMgmt.js"></script>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script>
+    $( document ).ready(function() {
+    	displayBus();
+    });</script>
+    <script>
+    $( document ).ready(function() {
+    	displayEmployee();
+    });</script>
+<title>Search Employee</title>
+</head>
+<body>
+<h1>Search Employee</h1>
+<hr>
+<table>
+<tr><td>
+<label for="empId">Employee ID: </label></td>
+<td>
+<div id="empiddiv"></div>
+</td></tr>
+<tr><td><label for="empName">Employee Name: </label></td>
+<td><input type="text" id="empName"></input></td></tr>
+<tr><td><label for="empSex">Employee Sex: </label></td>
+<td><select id="empSex">
+<option value="">Select sex</option>
+<option value="Male">Male</option>
+<option value="Female">Female</option>
+<option value="Other">Other</option>
+</select></td></tr>
+
+<tr><td>
+<label for="empDob">Employee Birth of Date: </label></td>
+<td><input type="date" id="empDob"></input></td></tr>
+<tr><td><label for="busNo">Bus No.: </label></td>
+<td>
+<div id="busdiv">
+</div></td></tr>
+<tr><td>
+<label for="empSalary">Employee Salary: </label></td>
+<td><input type="number" id="empSalary"></input></td></tr>
+<tr><td>
+<button id="searchbtn" onclick="searchEmployee()">Search</button></td></tr>
+<div id="resultArea">
+<table id="empresltTable">
+
+</table>
+</div>
+</table>
+</body>
+</html>

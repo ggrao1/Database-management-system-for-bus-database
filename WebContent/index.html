@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript" src="js/LogInMgmt.js"></script>
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+		<meta charset="ISO-8859-1">
+		<title>Admin LogIn</title>
+	</head>
+	<body>
+		<h1>Admin LogIn</h1>
+		<hr> 
+		<table>
+			<tr>
+				<td>
+					<label for="username">Name: </label>
+				</td>
+				<td>
+					<input type="text"  id="username"></input>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label for="password">Password: </label>
+				</td>
+				<td>
+					<input type="text"  id="password"></input>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<button id="searchbtn" onclick="logIn()">Log In</button>
+				</td>
+			</tr> 
+			<div id="resultArea">
+				<table id="error"></table>
+			</div>
+		</table>
+	</body>
+</html>

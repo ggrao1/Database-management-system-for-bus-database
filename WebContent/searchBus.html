@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<script type="text/javascript" src="js/BusMgmt.js"></script>
+<script type="text/javascript" src="js/TicketMgmt.js"></script>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script>
+    $( document ).ready(function() {
+    	displayBus();
+    });</script>
+   
+<title>Search Bus</title>
+</head>
+<body>
+<h1> Search Bus's </h1>
+<hr>
+<table>
+<tr><td><label for="busNo">Bus No.: </label></td>
+<td>
+<div id="busdiv">
+</div></td></tr>
+<tr><td>
+<label for="depoNo">Depot No: </label></td>
+<td><input type="text"  id="depoNo"></input></td></tr>
+<tr><td><label for="capacity">Bus Capacity: </label></td>
+<td><input type="text"  id="capacity"></input></td></tr>
+<tr><td><label for="fromStop">From location: </label></td>
+<td><input type="text" id="fromStop"></input></td></tr>
+<tr><td><label for="toStop">To location: </label></td>
+<td><input type="text" id="toStop"></input></td></tr>
+<tr><td>
+<button id="searchbtn" onclick="displayBus1()">Search Bus</button></td></tr>
+<br>
+<div id="resultArea">
+<table id="busresltTable">
+
+</table>
+</div>
+</table>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<script type="text/javascript" src="js/TicketMgmt.js"></script>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script>
+    $( document ).ready(function() {
+    	displayBus();
+    });</script>
+    <script>
+    $( document ).ready(function() {
+    	displayPassenger();
+    });</script>
+<title> Add Ticket </title>
+</head>
+<body>
+<h1> Add Ticket </h1>
+<hr>
+<table>
+<tr><td><label for="busNo">Bus No.: </label></td>
+<td>
+<div id="busdiv">
+</div></td></tr>
+<tr><td><label for="price">Ticket Price: </label></td>
+<td><input type="text"  id="price"></input></td></tr>
+<tr><td><label for="passengerId">Passanger ID: </label></td>
+<td>
+<div id="passengerdiv"></div></td></tr>
+<tr><td><label for="fromStop">From location: </label></td>
+<td><input type="text" id="fromStop"></input></td></tr>
+<tr><td><label for="toStop">To location: </label></td>
+<td><input type="text" id="toStop"></input></td></tr>
+<tr><td>
+
+<button id="savebtn" onclick="saveTicket()">Save</button></td></tr>
+</table>
+</body>
+</html>
