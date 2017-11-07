@@ -7,15 +7,7 @@
 <link rel="stylesheet" href="css/w3.css">
 <script>
     $( document ).ready(function() {
-    	displayBus();
-    });</script>
-    <script>
-    $( document ).ready(function() {
-    	displayPassenger();
-    });</script>
-    <script>
-    $( document ).ready(function() {
-    	displayTicket1();
+    	displayTicket4();
     });</script>
     <style>
 body{
@@ -31,7 +23,7 @@ footer{
 }
 
 </style>
-<title>Search Ticket</title>
+<title>Delete Ticket</title>
 </head>
 <body>
 <nav class="w3-bar w3-black" >
@@ -41,35 +33,17 @@ footer{
   <a href="displayticket.html" class="w3-button w3-bar-item">Ticket Management</a>
   <a href="displaypassenger.html" class="w3-button w3-bar-item">Passenger Management</a>
 </nav>
-<h1> Search Ticket's </h1>
+<h1> Delete Ticket's </h1>
 <hr>
 <table>
+<tr><td></td><td>
+<div id="a1"></div></td></tr>
 <tr><td><label for="ticketNo">Ticket No: </label></td>
 <td>
 <div id="ticketdiv"></div>
 </td></tr>
-<tr><td><label for="busNo">Bus No.: </label></td>
-<td>
-<div id="busdiv">
-</div></td></tr>
-<tr><td><label for="price">Ticket Price: </label></td>
-<td><input type="text"  id="price"></input></td></tr>
-<tr><td><label for="passengerId">Passanger ID: </label></td>
-<td>
-<div id="passengerdiv"></div></td></tr>
-<tr><td><label for="fromStop">From location: </label></td>
-<td><input type="text" id="fromStop"></input></td></tr>
-<tr><td><label for="toStop">To location: </label></td>
-<td><input type="text" id="toStop"></input></td></tr>
 <tr><td>
-<button id="searchbtn" onclick="displayTicket()">Search Ticket</button></td></tr>
+<button id="deletebtn" onclick="deleteTicket()">Delete Ticket</button></td></tr>
 </table>
-<br>
-<div id="resultArea">
-<table id="ticketresltTable">
-</table>
-
-</div>
-
 </body>
 </html>

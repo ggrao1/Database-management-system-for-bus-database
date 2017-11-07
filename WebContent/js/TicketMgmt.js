@@ -19,6 +19,7 @@ $.ajax({
 			if(data.indexOf("failed")==-1)
 				{
 					alert(data);
+					window.location="addTicket.html";
 				}
 			else
 				{
@@ -184,3 +185,129 @@ $.ajax({
 	});
 
 } 
+
+function displayTicket4()
+{
+
+$.ajax({
+	  url: "TicketServlet",
+	  method: "GET",
+	  data: { serviceName: "displayTicket" },
+		success:function(data) {
+
+				$("#ticketdiv").empty();
+				$("#a1").append( "<option value=\"\"> Ticket No. | Bus No. | Passenger Id | Price | From Location. | To Location |");
+				$("#ticketdiv").append("<select id=\"ticketNo\"></select>" );
+				$("#ticketNo").append("<option value=\"\">Select Ticket</option>");
+					var ticketArray=JSON.parse(data);
+					for(i=0;i<ticketArray.length;i++)
+					{
+						var ticket=ticketArray[i];
+						$("#ticketNo").append("<option value=\""+ticket.ticketNo+"\">| "+ticket.ticketNo+" | "+ticket.busNo+" | "+ticket.passengerId+" | "+ticket.price+" | "+ticket.fromStop+" | "+ticket.toStop+" | </option>");
+					}
+
+		 },
+		 error:function(err){
+			 alert(err);
+		 }
+	});
+}
+
+function updateTicket()
+{
+
+	var ticketNo=document.getElementById("ticketNo").value;
+	var busNo=document.getElementById("busNo").value;
+	var price=document.getElementById("price").value;
+	var passengerId=document.getElementById("passengerId").value;
+	var fromStop=document.getElementById("fromStop").value;
+	var toStop=document.getElementById("toStop").value;
+	if(ticketNo!=null && ticketNo!=undefined && ticketNo!="" && ticketNo.trim()!="")
+	{
+		var chkrslt=isNaN(ticketNo);
+		if(chkrslt==true)
+			{
+			alert("Ticket No.  cant be in text format. Enter valid number");
+			}  
+	}
+	if(price!=null && price!=undefined && price!="" && price.trim()!="")
+	{
+		var chkrslt=isNaN(price);
+		if(chkrslt==true)
+			{
+			alert("price  cant be in text format. Enter valid number");
+			}  
+	}
+	if(busNo!=null && busNo!=undefined && busNo!="" && busNo.trim()!="")
+	{
+		var chkrslt=isNaN(busNo);
+		if(chkrslt==true)
+			{
+			alert("Bus No.  cant be in text format. Enter valid number");
+			}  
+	}
+	if(passengerId!=null && passengerId!=undefined && passengerId!="" && passengerId.trim()!="")
+	{
+		var chkrslt=isNaN(passengerId);
+		if(chkrslt==true)
+			{
+			alert("passengerId cant be in text format. Enter valid number");
+			}  
+	}
+	$.ajax({
+		  url: "TicketServlet",
+		  method: "POST",
+		  data: { serviceName: "updateTicket",ticketNo:ticketNo, busNo:busNo,passengerId:passengerId,price:price,fromStop:fromStop,toStop:toStop},
+			success:function(data) {
+				if(data.indexOf("failed")==-1)
+					{
+						alert(data);
+						window.location="updateTicket.html";
+					}
+				else
+					{
+					alert("Save failed");
+					}
+			 },
+			 error:function(err){
+				 alert(err);
+			 }
+
+		});
+
+	} 
+
+function deleteTicket()
+{
+
+	var ticketNo=document.getElementById("ticketNo").value;
+	if(ticketNo!=null && ticketNo!=undefined && ticketNo!="" && ticketNo.trim()!="")
+	{
+		var chkrslt=isNaN(ticketNo);
+		if(chkrslt==true)
+			{
+			alert("Ticket No.  cant be in text format. Enter valid number");
+			}  
+	}
+	$.ajax({
+		  url: "TicketServlet",
+		  method: "POST",
+		  data: { serviceName: "deleteTicket",ticketNo:ticketNo},
+			success:function(data) {
+				if(data.indexOf("failed")==-1)
+					{
+						alert(data);
+						window.location="deleteTicket.html";
+					}
+				else
+					{
+					alert("Save failed");
+					}
+			 },
+			 error:function(err){
+				 alert(err);
+			 }
+
+		});
+
+	}

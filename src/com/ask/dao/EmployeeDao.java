@@ -111,7 +111,8 @@ public class EmployeeDao {
 		return con;
 	}
 
-	public List<Employee> searchEmployee(String empId,String empName, String empDob,String empSex,String busNo,String empSalary) {
+	public List<Employee> searchEmployee(String empId,String empName, String empDob,String empSex,String busNo,String empSalary) 
+	{
 		// TODO Auto-generated method stub
 		
 
@@ -215,5 +216,138 @@ public class EmployeeDao {
 		return empList;
 	
 	}
-
+	public String updateEmployee(String empId,String empName,String empDob,String empSex,String busNo,String empSalary) 
+	{
+		// TODO Auto-generated method stub
+		Connection con=getConnection();
+		PreparedStatement ps=null;
+		int rs=0;
+		if(empId!=null  && !("".equalsIgnoreCase(empId)))
+		{
+			
+		
+			String query=" update emptest SET empId=empId ";
+			if(empName!=null && !("".equalsIgnoreCase(empName)))
+			{
+				query= query +" , empName = ? ";
+			}
+			if(empDob!=null && !("".equalsIgnoreCase(empDob)))
+			{
+				query= query +" , empDob = to_date(?,'YYYY-MM-DD') ";
+			}
+			if(empSex!=null && !("".equalsIgnoreCase(empSex)))
+			{
+				query= query +" , empSex = ? ";
+			}
+			if(empSalary!=null && !("".equalsIgnoreCase(empSalary)) )
+			{
+				query= query +" , empSalary = ? ";
+			}
+			if(busNo!=null  && !("".equalsIgnoreCase(busNo)))
+			{
+				query= query +" , busNo = ? ";
+			}
+			query= query +" where empId = ? ";
+			try {
+				int count=0;
+				ps=con.prepareStatement(query);
+				if(empName!=null && !("".equalsIgnoreCase(empName)))
+				{
+					count=count+1;
+					ps.setString(count, empName);
+				}
+				if(empDob!=null && !("".equalsIgnoreCase(empDob)))
+				{
+					count=count+1;
+					ps.setString(count, empDob);
+				}
+				if(empSex!=null && !("".equalsIgnoreCase(empSex)))
+				{
+					count=count+1;
+					ps.setString(count, empSex);	
+				}
+				if(empSalary!=null && !("".equalsIgnoreCase(empSalary)))
+				{
+					count=count+1;
+					ps.setInt(count, Integer.parseInt(empSalary));
+				}
+				if(busNo!=null && !("".equalsIgnoreCase(busNo)))
+				{
+					count=count+1;
+					ps.setInt(count, Integer.parseInt(busNo));
+				}
+				count=count+1;
+				ps.setInt(count, Integer.parseInt(empId));
+				rs=ps.executeUpdate();
+			}catch (SQLException e) {
+					// TODO Auto-generated catch block
+					return "Employee update failed";
+				}
+				finally
+				{
+					try
+					{
+						if(ps!=null)
+							ps.close();
+						if(con!=null)
+							con.close();
+					}
+					catch(Exception e){
+				
+					}
+				}
+				
+			}
+		else {
+			return "Select Employee to update!!";
+		}
+		
+		return "Employee Update successful";
+			
+	}	
+		
+	public String deleteEmployee(String empId) 
+	{
+		// TODO Auto-generated method stub
+		Connection con=getConnection();
+		PreparedStatement ps=null;
+		int rs=0;
+		if(empId!=null && !("".equalsIgnoreCase(empId)) )
+		{
+			
+		
+			String query=" delete from emptest where empId = ? ";
+				try {
+					ps=con.prepareStatement(query);	
+					ps.setInt(1, Integer.parseInt(empId));
+					rs=ps.executeUpdate();
+				}catch (SQLException e) {
+						// TODO Auto-generated catch block
+						return "Employee Delete failed";
+					}
+					finally
+					{
+						try
+						{
+							if(ps!=null)
+								ps.close();
+							if(con!=null)
+								con.close();
+						}
+						catch(Exception e){
+					
+						}
+					}
+				
+			}
+		
+				
+			
+		else {
+			return "Select Employee to Delete!!";
+		}
+		
+		return "Employee Delete successful";
+			
+	}
 }

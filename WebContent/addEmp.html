@@ -6,12 +6,20 @@
 <script type="text/javascript" src="js/EmpMgmt.js"></script>
 <script type="text/javascript" src="js/TicketMgmt.js"></script>
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<link rel="stylesheet" href="css/w3.css">
 <script>
     $( document ).ready(function() {
     	displayBus();
     });</script>
 </head>
 <body>
+<nav class="w3-bar w3-black" >
+  <a href="displaydepo.html" class="w3-button w3-bar-item">Depo Management</a>
+  <a href="displayemployee.html" class="w3-button w3-bar-item">Employee Management</a>
+  <a href="displaybus.html" class="w3-button w3-bar-item">Bus Management</a>
+  <a href="displayticket.html" class="w3-button w3-bar-item">Ticket Management</a>
+  <a href="displaypassenger.html" class="w3-button w3-bar-item">Passenger Management</a>
+</nav>
 <h1> Add Employee </h1>
 <hr>
 <table>
@@ -20,10 +28,10 @@
 <tr><td>
 <label for="empSex">Employee Sex: </label></td>
 <td><select id="empSex">
-<option type="text" value="">Select sex</option>
-<option type="text" value="Male">Male</option>
-<option type="text" value="Female">Female</option>
-<option type="text" value="Other">Other</option>
+<option  value="">Select sex</option>
+<option  value="Male">Male</option>
+<option  value="Female">Female</option>
+<option  value="Other">Other</option>
 </select></td></tr>
 <tr><td>
 <label for="empDob">Employee BirthDate: </label></td>

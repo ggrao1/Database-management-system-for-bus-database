@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ask.dao.EmployeeDao;
 import com.ask.dao.TicketDao;
 import com.ask.model.Ticket;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -61,7 +62,25 @@ public class TicketServlet extends HttpServlet {
 			String result=ticketDao.addTicket(ticket); 
 			response.getWriter().write(result);
 		}
-		
+		else if("updateTicket".equalsIgnoreCase(request.getParameter("serviceName")))
+		{
+			TicketDao ticketDao= new TicketDao();
+			String ticketNo=(String)request.getParameter("ticketNo");
+			String busNo=(String)request.getParameter("busNo");
+			String passengerId=(String)request.getParameter("passengerId");
+			String price=(String)request.getParameter("price");
+			String fromStop=(String)request.getParameter("fromStop");
+			String toStop=(String)request.getParameter("toStop");
+			String result=ticketDao.updateTicket(ticketNo,busNo,passengerId,price,fromStop,toStop);
+			response.getWriter().write(result);
+		}
+		else if("deleteTicket".equalsIgnoreCase(request.getParameter("serviceName")))
+		{
+			TicketDao ticketDao= new TicketDao();
+			String ticketNo=(String)request.getParameter("ticketNo");
+			String result=ticketDao.deleteTicket(ticketNo);
+			response.getWriter().write(result);
+		}
 		else
 		{
 			response.getWriter().write("Invalid Service Name");

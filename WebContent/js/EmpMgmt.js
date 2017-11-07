@@ -21,6 +21,7 @@ $.ajax({
 			if(data.indexOf("failed")==-1)
 				{
 					alert(data);
+					window.location="addEmp.html";
 				}
 			else
 				{
@@ -64,7 +65,7 @@ function searchEmployee()
 	}
 	if(empSalary!=null && empSalary!=undefined && empSalary!="" && empSalary.trim()!="")
 	{
-		var chkrslt=isNaN(empId);
+		var chkrslt=isNaN(empSalary);
 		if(chkrslt==true)
 			{
 			alert("Employee salary cant be in text format. Enter valid number");
@@ -150,7 +151,7 @@ $.ajax({
 }
 
 
-function updateEmployee(emp)
+function updateEmployee()
 {
 var empId=document.getElementById("empId").value;;
 var empName=document.getElementById("empName").value;;
@@ -159,20 +160,41 @@ var empSex=document.getElementById("empSex").value;
 var busNo=document.getElementById("busNo").value;
 var empSalary=document.getElementById("empSalary").value;
 
-
-var empObj={
-		"empName":empName,"empDob":empDob,"empSex":empSex,"busNo":busNo,"empSalary":empSalary
-};
-
-
+if(empId!=null && empId!=undefined && empId!="" && empId.trim()!="")
+{
+	var chkrslt=isNaN(empId);
+	if(chkrslt==true)
+		{
+		alert("Employee Id cant be in text format. Enter valid number");
+		}
+	  
+}
+if(busNo!=null && busNo!=undefined && busNo!="" && busNo.trim()!="")
+{
+	var chkrslt=isNaN(busNo);
+	if(chkrslt==true)
+		{
+		alert("bus no cant be in text format. Enter valid number");
+		}
+	  
+}
+if(empSalary!=null && empSalary!=undefined && empSalary!="" && empSalary.trim()!="")
+{
+	var chkrslt=isNaN(empSalary);
+	if(chkrslt==true)
+		{
+		alert("Employee salary cant be in text format. Enter valid number");
+		}	  
+}
 $.ajax({
 	  url: "EmployeeServlet",
 	  method: "POST",
-	  data: { serviceName: "updateEmployee",empRec:JSON.stringify(empObj),empId:empId },
+	  data: { serviceName: "updateEmployee",empId:empId,empName:empName,empDob:empDob,empSex:empSex,busNo:busNo,empSalary:empSalary },
 		success:function(data) {
 			if(data.indexOf("failed")==-1)
 				{
 					alert(data);
+					window.location="updateEmp.html";
 				}
 			else
 				{
@@ -182,7 +204,40 @@ $.ajax({
 		 error:function(err){
 			 alert(err);
 		 }
-
 	});
-
 } 
+
+function deleteEmp()
+{
+var empId=document.getElementById("empId").value;;
+
+if(empId!=null && empId!=undefined && empId!="" && empId.trim()!="")
+{
+	var chkrslt=isNaN(empId);
+	if(chkrslt==true)
+		{
+		alert("Employee Id cant be in text format. Enter valid number");
+		}
+	  
+}
+
+$.ajax({
+	  url: "EmployeeServlet",
+	  method: "POST",
+	  data: { serviceName: "deleteEmployee",empId:empId },
+		success:function(data) {
+			if(data.indexOf("failed")==-1)
+				{
+					alert(data);
+					window.location="deleteEmp.html";
+				}
+			else
+				{
+				alert("Save failed");
+				}
+		 },
+		 error:function(err){
+			 alert(err);
+		 }
+	});
+}

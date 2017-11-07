@@ -4,15 +4,24 @@
 <meta charset="ISO-8859-1">
 <script type="text/javascript" src="js/EmpMgmt.js"></script>
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<link rel="stylesheet" href="css/w3.css">
 <title>Employee Management</title>
 </head>
 <body>
+<nav class="w3-bar w3-black">
+  <a href="displaydepo.html" class="w3-button w3-bar-item">Depo Management</a>
+  <a href="displayemployee.html" class="w3-button w3-bar-item">Employee Management</a>
+  <a href="displaybus.html" class="w3-button w3-bar-item">Bus Management</a>
+  <a href="displayticket.html" class="w3-button w3-bar-item">Ticket Management</a>
+  <a href="displaypassenger.html" class="w3-button w3-bar-item">Passenger Management</a>
+</nav>
 <h1>Employee Management</h1>
 <hr>
 <table><tr>
 <td><button onClick="location.href='addEmp.html'" type="button">Add new Employee</button></td>
 <td><button onClick="location.href='searchEmp.html'" type="button">Search Employee</button></td>
 <td><button onClick="location.href='updateEmp.html'" type="button">Update Employee</button></td>
+<td><button onClick="location.href='deleteEmp.html'" type="button">Delete Employee</button></td>
 </tr>
 </table>
 </body>

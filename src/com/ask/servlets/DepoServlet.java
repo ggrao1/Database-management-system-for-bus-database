@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ask.dao.BusDao;
 import com.ask.dao.DepoDao;
 import com.ask.model.Depo;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -56,7 +57,21 @@ public class DepoServlet extends HttpServlet {
 			String result=depoDao.addDepo(depo);
 			response.getWriter().write(result);
 		}
-		
+		else if("updateDepo".equalsIgnoreCase(request.getParameter("serviceName")))
+		{
+			DepoDao depoDao= new DepoDao();
+			String depoNo=(String)request.getParameter("depoNo");
+			String location=(String)request.getParameter("location");
+			String result=depoDao.updateDepo(depoNo,location);
+			response.getWriter().write(result);
+		}
+		else if("deleteDepo".equalsIgnoreCase(request.getParameter("serviceName")))
+		{
+			DepoDao depoDao= new DepoDao();
+			String depoNo=(String)request.getParameter("depoNo");
+			String result=depoDao.deleteDepo(depoNo);
+			response.getWriter().write(result);
+		}
 		else
 		{
 			response.getWriter().write("Invalid Service Name");

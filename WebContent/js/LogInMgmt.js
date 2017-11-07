@@ -3,7 +3,6 @@ function logIn()
 
 	var username=document.getElementById("username").value;
 	var password=document.getElementById("password").value;
-	
 
 $.ajax({
 	  url: "LoginServlet",
@@ -13,17 +12,15 @@ $.ajax({
 
 				$("#error").empty();
 				
-					var depoArray=JSON.parse(data);
-					for(i=0;i<depoArray.length;i++)
-					{
-						var depo=depoArray[i];
-						if(depo.username==username && depo.password==password){
-							alert("login successful!!")
+					var loginResult=data;
+						if(loginResult=="SUCCESS"){
+							alert("login successful!!");
+							window.location="index1.html";
 						}
 						else{
 							$("#error").append( "Invalid username or password!!");
 						}
-					}
+					
 		 },
 		 error:function(err){
 			 alert(err);

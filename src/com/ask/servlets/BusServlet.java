@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ask.dao.BusDao;
+import com.ask.dao.EmployeeDao;
 import com.ask.model.Bus;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -60,7 +61,24 @@ public class BusServlet extends HttpServlet {
 			String result=busDao.addBus(bus); 
 			response.getWriter().write(result);
 		}
-		
+		else if("updateBus".equalsIgnoreCase(request.getParameter("serviceName")))
+		{
+			BusDao busDao= new BusDao();
+			String busNo=(String)request.getParameter("busNo");
+			String depoNo=(String)request.getParameter("depoNo");
+			String capacity=(String)request.getParameter("capacity");
+			String fromStop=(String)request.getParameter("fromStop");
+			String toStop=(String)request.getParameter("toStop");
+			String result=busDao.updateBus(busNo,depoNo,capacity,fromStop,toStop);
+			response.getWriter().write(result);
+		}
+		else if("deleteBus".equalsIgnoreCase(request.getParameter("serviceName")))
+		{
+			BusDao busDao= new BusDao();
+			String busNo=(String)request.getParameter("busNo");
+			String result=busDao.deleteBus(busNo);
+			response.getWriter().write(result);
+		}
 		else
 		{
 			response.getWriter().write("Invalid Service Name");

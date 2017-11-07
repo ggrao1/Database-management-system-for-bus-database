@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ask.dao.LoginDao;
-import com.ask.model.Login;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
@@ -33,13 +32,12 @@ public class LoginServlet extends HttpServlet {
 		if("logIn".equalsIgnoreCase(request.getParameter("serviceName")))
 		{
 			ObjectMapper mapper = new ObjectMapper();
-			LoginDao depoDao= new LoginDao();
-			List<Login> depo = new ArrayList<>();
+			LoginDao loginDao= new LoginDao();
+			String loginResult = "ERROR";
 			String username =(String)request.getParameter("username");
 			String password =(String)request.getParameter("password");
-			depo=depoDao.displayDepo(username,password);
-			String result = mapper.writeValueAsString(depo);
-			response.getWriter().write(result);
+			loginResult=loginDao.login(username,password);
+			response.getWriter().write(loginResult);
 		}
 	}
 

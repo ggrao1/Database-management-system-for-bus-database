@@ -110,7 +110,7 @@ public class BusDao {
 		return con;
 	}
 
-	public List<Bus> displayBus(String busNo,String depoNo,String capacity,String fromStop,String toStop) {
+	public List<Bus> displayBus(String busNo,String depoId,String capacity,String fromStop,String toStop) {
 		// TODO Auto-generated method stub
 		
 
@@ -118,14 +118,14 @@ public class BusDao {
 		Connection con=getConnection();
 		PreparedStatement ps=null;
 		ResultSet rs=null;
-		String query=" select busNo,capacity,depoId,fromStop,toStop from bustest where 1=1  ";
+		String query=" select busNo,depoId,capacity,fromStop,toStop from bustest where 1=1  ";
 		if(busNo!=null && !("".equalsIgnoreCase(busNo)) )
 		{
 			query= query +" AND busNo = ? ";
 		}
-		if(depoNo!=null && !("".equalsIgnoreCase(depoNo)))
+		if(depoId!=null && !("".equalsIgnoreCase(depoId)))
 		{
-			query= query +" AND depoNo = ? ";
+			query= query +" AND depoId = ? ";
 		}
 		if(capacity!=null && !("".equalsIgnoreCase(capacity)))
 		{
@@ -147,10 +147,10 @@ public class BusDao {
 				count=count+1;
 				ps.setInt(count, Integer.parseInt(busNo));
 			}
-			if(depoNo!=null && !("".equalsIgnoreCase(depoNo)))
+			if(depoId!=null && !("".equalsIgnoreCase(depoId)))
 			{
 				count=count+1;
-				ps.setInt(count, Integer.parseInt(depoNo));
+				ps.setInt(count, Integer.parseInt(depoId));
 			}
 			if(capacity!=null && !("".equalsIgnoreCase(capacity)))
 			{
@@ -202,6 +202,134 @@ public class BusDao {
 		
 		return busList;
 	
+	}
+	
+	
+	public String updateBus(String busNo,String depoNo,String capacity,String fromStop,String toStop) 
+	{
+		// TODO Auto-generated method stub
+		Connection con=getConnection();
+		PreparedStatement ps=null;
+		int rs=0;
+		if(busNo!=null  && !("".equalsIgnoreCase(busNo)))
+		{
+			
+		
+			String query=" update bustest SET busNo=busNo ";
+			if(depoNo!=null && !("".equalsIgnoreCase(depoNo)))
+			{
+				query= query +" , depoid = ? ";
+			}
+			if(capacity!=null && !("".equalsIgnoreCase(capacity)))
+			{
+				query= query +" , capacity = ? ";
+			}
+			if(fromStop!=null && !("".equalsIgnoreCase(fromStop)))
+			{
+				query= query +" , fromStop = ? ";
+			}
+			if(toStop!=null && !("".equalsIgnoreCase(toStop)))
+			{
+				query= query +" , toStop = ? ";
+			}
+			query= query +" where busNo = ? ";
+			try {
+				int count=0;
+				ps=con.prepareStatement(query);
+				if(depoNo!=null && !("".equalsIgnoreCase(depoNo)))
+				{
+					count=count+1;
+					ps.setInt(count, Integer.parseInt(depoNo));
+				}
+				if(capacity!=null && !("".equalsIgnoreCase(capacity)))
+				{
+					count=count+1;
+					ps.setInt(count, Integer.parseInt(capacity));
+				}
+				if(fromStop!=null && !("".equalsIgnoreCase(fromStop)))
+				{
+					count=count+1;
+					ps.setString(count, fromStop);
+				}
+				if(toStop!=null && !("".equalsIgnoreCase(toStop)))
+				{
+					count=count+1;
+					ps.setString(count, toStop);
+				}
+				count=count+1;
+				ps.setInt(count, Integer.parseInt(busNo));
+				rs=ps.executeUpdate();
+			}catch (SQLException e) {
+					// TODO Auto-generated catch block
+					return "Bus update failed";
+				}
+				finally
+				{
+					try
+					{
+						if(ps!=null)
+							ps.close();
+						if(con!=null)
+							con.close();
+					}
+					catch(Exception e){
+				
+					}
+				}
+				
+			}
+		else {
+			return "Select Bus to update!!";
+		}
+		
+		return "Bus Update successful";
+			
+	}
+	
+	
+	public String deleteBus(String busNo) 
+	{
+		// TODO Auto-generated method stub
+		Connection con=getConnection();
+		PreparedStatement ps=null;
+		int rs=0;
+		if(busNo!=null && !("".equalsIgnoreCase(busNo)) )
+		{
+			
+		
+			String query=" delete from bustest where busNo= ? ";
+				try {
+					ps=con.prepareStatement(query);	
+					ps.setInt(1, Integer.parseInt(busNo));
+					rs=ps.executeUpdate();
+				}catch (SQLException e) {
+						// TODO Auto-generated catch block
+						return "Bus Delete failed";
+					}
+					finally
+					{
+						try
+						{
+							if(ps!=null)
+								ps.close();
+							if(con!=null)
+								con.close();
+						}
+						catch(Exception e){
+					
+						}
+					}
+				
+			}
+		
+				
+			
+		else {
+			return "Select Bus to Delete!!";
+		}
+		
+		return "Bus Delete successful";
+			
 	}
 
 }

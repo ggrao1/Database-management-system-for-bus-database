@@ -2,36 +2,16 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<script type="text/javascript" src="js/BusMgmt.js"></script>
 <script type="text/javascript" src="js/TicketMgmt.js"></script>
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 <link rel="stylesheet" href="css/w3.css">
 <script>
     $( document ).ready(function() {
-    	displayBus();
+    	displayBus3();
     });</script>
-    <script>
-    $( document ).ready(function() {
-    	displayPassenger();
-    });</script>
-    <script>
-    $( document ).ready(function() {
-    	displayTicket1();
-    });</script>
-    <style>
-body{
-background-color: lightgrey;
-}
-h1 {
-    color: black;
-    text-align: center;
-}
-footer{
-	position:absolute; bottom:20px;
-	left:40%;
-}
-
-</style>
-<title>Search Ticket</title>
+   
+<title>Update Bus</title>
 </head>
 <body>
 <nav class="w3-bar w3-black" >
@@ -41,35 +21,26 @@ footer{
   <a href="displayticket.html" class="w3-button w3-bar-item">Ticket Management</a>
   <a href="displaypassenger.html" class="w3-button w3-bar-item">Passenger Management</a>
 </nav>
-<h1> Search Ticket's </h1>
+<h1> Update Bus's </h1>
 <hr>
 <table>
-<tr><td><label for="ticketNo">Ticket No: </label></td>
-<td>
-<div id="ticketdiv"></div>
-</td></tr>
+<tr><td></td><td>
+<div id="a1"></div></td></tr>
 <tr><td><label for="busNo">Bus No.: </label></td>
 <td>
 <div id="busdiv">
 </div></td></tr>
-<tr><td><label for="price">Ticket Price: </label></td>
-<td><input type="text"  id="price"></input></td></tr>
-<tr><td><label for="passengerId">Passanger ID: </label></td>
-<td>
-<div id="passengerdiv"></div></td></tr>
+<tr><td>
+<label for="depoNo">Depot No: </label></td>
+<td><input type="text"  id="depoNo"></input></td></tr>
+<tr><td><label for="capacity">Bus Capacity: </label></td>
+<td><input type="text"  id="capacity"></input></td></tr>
 <tr><td><label for="fromStop">From location: </label></td>
 <td><input type="text" id="fromStop"></input></td></tr>
 <tr><td><label for="toStop">To location: </label></td>
 <td><input type="text" id="toStop"></input></td></tr>
 <tr><td>
-<button id="searchbtn" onclick="displayTicket()">Search Ticket</button></td></tr>
+<button id="updatebtn" onclick="updateBus1()">Update</button></td></tr>
 </table>
-<br>
-<div id="resultArea">
-<table id="ticketresltTable">
-</table>
-
-</div>
-
 </body>
 </html>

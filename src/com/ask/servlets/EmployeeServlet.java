@@ -68,10 +68,30 @@ public class EmployeeServlet extends HttpServlet {
 			response.getWriter().write(result);
 		}
 		
+		else if("updateEmployee".equalsIgnoreCase(request.getParameter("serviceName")))
+		{
+			EmployeeDao empDao= new EmployeeDao();
+			String empId=(String)request.getParameter("empId");
+			String empName=(String)request.getParameter("empName");
+			String empDob=(String)request.getParameter("empDob");
+			String empSex=(String)request.getParameter("empSex");
+			String busNo=(String)request.getParameter("busNo");
+			String empSalary=(String)request.getParameter("empSalary");
+			String result=empDao.updateEmployee(empId,empName,empDob,empSex,busNo,empSalary);
+			response.getWriter().write(result);
+		}
+		
+		else if("deleteEmployee".equalsIgnoreCase(request.getParameter("serviceName")))
+		{
+			EmployeeDao empDao= new EmployeeDao();
+			String empId=(String)request.getParameter("empId");
+			String result=empDao.deleteEmployee(empId);
+			response.getWriter().write(result);
+		}
 		else
 		{
 			response.getWriter().write("Invalid Service Name");
 		}
 	}
-
+	
 }

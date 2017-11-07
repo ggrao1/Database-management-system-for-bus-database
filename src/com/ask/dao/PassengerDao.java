@@ -192,5 +192,75 @@ public class PassengerDao {
 		return passList;
 	
 	}
+	
+	public String updatePassenger(String passengerId,String name,String phone,String age) 
+	{
+		// TODO Auto-generated method stub
+		Connection con=getConnection();
+		PreparedStatement ps=null;
+		int rs=0;
+		if(passengerId!=null  && !("".equalsIgnoreCase(passengerId)))
+		{
+			String query=" update passengertest SET passengerId=passengerId ";
+			if(name!=null && !("".equalsIgnoreCase(name)))
+			{
+				query= query +" , name = ? ";
+			}
+			if(phone!=null && !("".equalsIgnoreCase(phone)) )
+			{
+				query= query +" , phone = ? ";
+			}
+			if(age!=null  && !("".equalsIgnoreCase(age)))
+			{
+				query= query +" , age = ? ";
+			}
+			query= query +" where passengerId = ? ";
+			try {
+				int count=0;
+				ps=con.prepareStatement(query);
+				if(name!=null && !("".equalsIgnoreCase(name)))
+				{
+					count=count+1;
+					ps.setString(count, name);
+				}
+				if(phone!=null && !("".equalsIgnoreCase(phone)))
+				{
+					count=count+1;
+					ps.setString(count, phone);
+					
+				}
+				if(age!=null && !("".equalsIgnoreCase(age)))
+				{
+					count=count+1;
+					ps.setString(count, age);
+				}
+				count=count+1;
+				ps.setString(count, passengerId);
+				rs=ps.executeUpdate();
+			}catch (SQLException e) {
+					// TODO Auto-generated catch block
+					return "Passenger update failed";
+				}
+				finally
+				{
+					try
+					{
+						if(ps!=null)
+							ps.close();
+						if(con!=null)
+							con.close();
+					}
+					catch(Exception e){
+				
+					}
+				}
+			}
+		else {
+			return "Select Passenger to update!!";
+		}
+		
+		return "Passenger Update successful";
+			
+	}
 
 }

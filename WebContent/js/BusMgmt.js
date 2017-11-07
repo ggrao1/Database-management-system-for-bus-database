@@ -18,6 +18,7 @@ $.ajax({
 			if(data.indexOf("failed")==-1)
 				{
 					alert(data);
+					window.location="addBus.html";
 				}
 			else
 				{
@@ -77,7 +78,7 @@ $.ajax({
 					for(i=0;i<busArray.length;i++)
 					{
 						var bus=busArray[i];
-						$("#busresltTable").append('<tr><td>'+" "+bus.busNo+" "+'</td><td>'+" "+bus.capacity+" "+'</td><td>'+" "+bus.depoNo+" "+'</td><td>'+" "+bus.fromStop+" "+'</td><td>'+" "+bus.toStop+" "+'</td></tr>');
+						$("#busresltTable").append('<tr><td>'+" "+bus.busNo+" "+'</td><td>'+" "+bus.depoNo+" "+'</td><td>'+" "+bus.capacity+" "+'</td><td>'+" "+bus.fromStop+" "+'</td><td>'+" "+bus.toStop+" "+'</td></tr>');
 					}
 
 		 },
@@ -121,3 +122,121 @@ $.ajax({
 }
 
 
+function displayBus3()
+{
+	
+$.ajax({
+	  url: "BusServlet",
+	  method: "GET",
+	  data: { serviceName: "displayBus" },
+		success:function(data) {
+
+				$("#busdiv").empty();
+				$("#busdiv").append( "<select id=\"busNo\"></select>");
+				$("#busNo").append("<option value=\"\">Select Bus No.</option>");
+				$("#a1").append( "<option value=\"\"> Bus No. | Depot No. | Capacity | From Location. | To Location |");
+					var busArray=JSON.parse(data);
+					for(i=0;i<busArray.length;i++)
+					{
+						var bus=busArray[i];
+						$("#busNo").append("<option value=\""+bus.busNo+"\">| "+bus.busNo+" | "+bus.depoNo+" | "+bus.capacity+" | "+bus.fromStop+" | "+bus.toStop+" | "+"</option>");
+					}
+		 },
+		 error:function(err){
+			 alert(err);
+		 }
+	});
+
+}
+
+function updateBus1()
+{
+
+	var busNo=document.getElementById("busNo").value;
+	var depoNo=document.getElementById("depoNo").value;
+	var capacity=document.getElementById("capacity").value;
+	var fromStop=document.getElementById("fromStop").value;
+	var toStop=document.getElementById("toStop").value;
+	if(depoNo!=null && depoNo!=undefined && depoNo!="" && depoNo.trim()!="")
+	{
+		var chkrslt=isNaN(depoNo);
+		if(chkrslt==true)
+			{
+			alert("Depo No.  cant be in text format. Enter valid number");
+			}  
+	}
+	if(capacity!=null && capacity!=undefined && capacity!="" && capacity.trim()!="")
+	{
+		var chkrslt=isNaN(capacity);
+		if(chkrslt==true)
+			{
+			alert("capacity  cant be in text format. Enter valid number");
+			}  
+	}
+	if(busNo!=null && busNo!=undefined && busNo!="" && busNo.trim()!="")
+	{
+		var chkrslt=isNaN(busNo);
+		if(chkrslt==true)
+			{
+			alert("Bus No.  cant be in text format. Enter valid number");
+			}  
+	}
+
+	$.ajax({
+		  url: "BusServlet",
+		  method: "POST",
+		  data: { serviceName: "updateBus",busNo:busNo,depoNo:depoNo,capacity:capacity,fromStop:fromStop,toStop:toStop },
+			success:function(data) {
+				if(data.indexOf("failed")==-1)
+					{
+						alert(data);
+						window.location="updateBus.html";
+					}
+				else
+					{
+					alert("Save failed");
+					}
+			 },
+			 error:function(err){
+				 alert(err);
+			 }
+
+		});
+
+	} 
+
+
+function deleteBus8()
+{
+
+	var busNo=document.getElementById("busNo").value;
+	if(busNo!=null && busNo!=undefined && busNo!="" && busNo.trim()!="")
+	{
+		var chkrslt=isNaN(busNo);
+		if(chkrslt==true)
+			{
+			alert("Bus No.  cant be in text format. Enter valid number");
+			} 
+	}
+	$.ajax({
+		  url: "BusServlet",
+		  method: "POST",
+		  data: { serviceName: "deleteBus",busNo:busNo },
+			success:function(data) {
+				if(data.indexOf("failed")==-1)
+					{
+						alert(data);
+						window.location="deleteBus.html";
+					}
+				else
+					{
+					alert("Delete failed");
+					}
+			 },
+			 error:function(err){
+				 alert(err);
+			 }
+
+		});
+
+	}

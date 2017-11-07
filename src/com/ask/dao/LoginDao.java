@@ -8,8 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ask.model.Login;
-
 public class LoginDao {
 	private Connection getConnection()
 	{
@@ -32,25 +30,31 @@ public class LoginDao {
 		return con;
 	}
 
-	public List<Login> displayDepo(String username,String password) {
+	public String login(String username,String password) {
 		// TODO Auto-generated method stub
 		
 
-		List<Login> depoList = new ArrayList<>();
+		String result="ERROR";
 		Connection con=getConnection();
 		PreparedStatement ps=null;
 		ResultSet rs=null;
-		String query=" select username,password  from login  ";
+		String query=" select username1,password1  from login1 where username1=? and password1 = ? ";
 		try {
-			int count=0;
+			
 			ps=con.prepareStatement(query);
+			ps.setString(1, username);
+			ps.setString(2, password);
 			rs=ps.executeQuery();
-			while(rs.next())
+			if(rs.next())
 			{
-				Login e1=new Login();
-				e1.setUsername(rs.getString(1));;
-				e1.setPassword(rs.getString(2));
-				depoList.add(e1);
+				if(username.equals(rs.getString(1)) && password.equals(rs.getString(2)))
+				{
+					result= "SUCCESS";
+				}
+				else
+				{
+					result= "ERROR";
+				}
 			}
 			
 		} catch (SQLException e) {
@@ -73,7 +77,7 @@ public class LoginDao {
 			}
 		}
 		
-		return depoList;
+		return result;
 	
 	}
 

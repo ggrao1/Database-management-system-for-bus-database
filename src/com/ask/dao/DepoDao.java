@@ -169,5 +169,122 @@ public class DepoDao {
 		return depoList;
 	
 	}
+	
+	public String updateDepo(String depoNo,String location) 
+	{
+		// TODO Auto-generated method stub
+		Connection con=getConnection();
+		PreparedStatement ps=null;
+		int rs=0;
+		if(depoNo!=null && !("".equalsIgnoreCase(depoNo)) )
+		{
+			
+		
+			String query="";
+			
+			if(location!=null && !("".equalsIgnoreCase(location)))
+			{
+				if("".equalsIgnoreCase(query))
+				{
+					query=query+" update depotest set location = ? ";
+				}
+				else
+				{
+					query= query +" , location = ? ";
+				}
+				
+			}
+			
+			if(!("".equalsIgnoreCase(query)))
+				
+			{
+				
+				
+				query= query +" where depoId= ? ";
+				try {
+					int count=0;
+					ps=con.prepareStatement(query);	
+					if(location!=null && !("".equalsIgnoreCase(location)))
+					{
+						count=count+1;
+						ps.setString(count, location);
+					}
+					count=count+1;
+					ps.setInt(count, Integer.parseInt(depoNo));
+					rs=ps.executeUpdate();
+				}catch (SQLException e) {
+						// TODO Auto-generated catch block
+						return "Depot update failed";
+					}
+					finally
+					{
+						try
+						{
+							if(ps!=null)
+								ps.close();
+							if(con!=null)
+								con.close();
+						}
+						catch(Exception e){
+					
+						}
+					}
+				
+			}
+		
+				
+			}
+		else {
+			return "Select Depot to update!!";
+		}
+		
+		return "Depot Update successful";
+			
+	}
 
+	
+	public String deleteDepo(String depoNo) 
+	{
+		// TODO Auto-generated method stub
+		Connection con=getConnection();
+		PreparedStatement ps=null;
+		int rs=0;
+		if(depoNo!=null && !("".equalsIgnoreCase(depoNo)) )
+		{
+			
+		
+			String query=" delete from depotest where depoId= ? ";
+				try {
+					ps=con.prepareStatement(query);	
+					ps.setInt(1, Integer.parseInt(depoNo));
+					rs=ps.executeUpdate();
+				}catch (SQLException e) {
+						// TODO Auto-generated catch block
+						return "Depot Delete failed";
+					}
+					finally
+					{
+						try
+						{
+							if(ps!=null)
+								ps.close();
+							if(con!=null)
+								con.close();
+						}
+						catch(Exception e){
+					
+						}
+					}
+				
+			}
+		
+				
+			
+		else {
+			return "Select Depot to Delete!!";
+		}
+		
+		return "Depot Delete successful";
+			
+	}
 }

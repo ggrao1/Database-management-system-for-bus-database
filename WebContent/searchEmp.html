@@ -5,6 +5,7 @@
 <script type="text/javascript" src="js/EmpMgmt.js"></script>
 <script type="text/javascript" src="js/TicketMgmt.js"></script>
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<link rel="stylesheet" href="css/w3.css">
 <script>
     $( document ).ready(function() {
     	displayBus();
@@ -16,6 +17,13 @@
 <title>Search Employee</title>
 </head>
 <body>
+<nav class="w3-bar w3-black" >
+  <a href="displaydepo.html" class="w3-button w3-bar-item">Depo Management</a>
+  <a href="displayemployee.html" class="w3-button w3-bar-item">Employee Management</a>
+  <a href="displaybus.html" class="w3-button w3-bar-item">Bus Management</a>
+  <a href="displayticket.html" class="w3-button w3-bar-item">Ticket Management</a>
+  <a href="displaypassenger.html" class="w3-button w3-bar-item">Passenger Management</a>
+</nav>
 <h1>Search Employee</h1>
 <hr>
 <table>
@@ -46,11 +54,11 @@
 <td><input type="number" id="empSalary"></input></td></tr>
 <tr><td>
 <button id="searchbtn" onclick="searchEmployee()">Search</button></td></tr>
+</table>
 <div id="resultArea">
 <table id="empresltTable">
 
 </table>
 </div>
-</table>
 </body>
 </html>

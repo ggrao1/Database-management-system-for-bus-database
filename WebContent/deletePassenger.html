@@ -5,9 +5,14 @@
 <script type="text/javascript" src="js/PassengerMgmt.js"></script>
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 <link rel="stylesheet" href="css/w3.css">
-<title>Passenger Management</title>
+<script>
+    $( document ).ready(function() {
+    	displayPassenger6();
+    });</script>
+<title>Insert title here</title>
 </head>
 <body>
+<h1>Delete Passenger</h1>
 <nav class="w3-bar w3-black">
   <a href="displaydepo.html" class="w3-button w3-bar-item">Depo Management</a>
   <a href="displayemployee.html" class="w3-button w3-bar-item">Employee Management</a>
@@ -15,13 +20,17 @@
   <a href="displayticket.html" class="w3-button w3-bar-item">Ticket Management</a>
   <a href="displaypassenger.html" class="w3-button w3-bar-item">Passenger Management</a>
 </nav>
-<h1>Passenger Management</h1>
-<hr>
-<table><tr>
-<td><button onClick="location.href='addPassenger.html'" type="button">Add new Passenger</button></td>
-<td><button onClick="location.href='searchPassenger.html'" type="button">Search Passenger</button></td>
-<td><button onClick="location.href='updatePassenger.html'" type="button">Update Passenger</button></td>
-</tr>
+<table>
+<tr><td></td><td>
+<div id="a1"></div></td></tr>
+<tr><td>
+<tr><td><label for="passengerId">Select Passenger to Delete</label></td>
+<td>
+<div id="passengerdiv"></div></td></tr>
+
+<tr><td>
+<button id="deletebtn" onclick="deletePassenger()">Delete</button></td></tr>
 </table>
+
 </body>
 </html>

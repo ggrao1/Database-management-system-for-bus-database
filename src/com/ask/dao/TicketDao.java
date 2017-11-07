@@ -215,5 +215,140 @@ public class TicketDao {
 		return ticketList;
 	
 	}
+	
+	public String updateTicket(String ticketNo,String busNo,String passengerId,String price,String fromStop,String toStop) 
+	{
+		// TODO Auto-generated method stub
+		Connection con=getConnection();
+		PreparedStatement ps=null;
+		int rs=0;
+		if(ticketNo!=null  && !("".equalsIgnoreCase(ticketNo)))
+		{
+			
+		
+			String query=" update tickettest SET ticketNo=ticketNo ";
+			if(busNo!=null && !("".equalsIgnoreCase(busNo)))
+			{
+				query= query +" , busNo = ? ";
+			}
+			if(price!=null && !("".equalsIgnoreCase(price)))
+			{
+				query= query +" , price = ? ";
+			}
+			if(passengerId!=null && !("".equalsIgnoreCase(passengerId)) )
+			{
+				query= query +" , passengerId = ? ";
+			}
+			if(fromStop!=null  && !("".equalsIgnoreCase(fromStop)))
+			{
+				query= query +" , fromStop = ? ";
+			}
+			if(toStop!=null  && !("".equalsIgnoreCase(toStop)))
+			{
+				query= query +" , toStop = ? ";
+			}
+			query= query +" where ticketNo = ? ";
+			try {
+				int count=0;
+				ps=con.prepareStatement(query);
+				if(busNo!=null && !("".equalsIgnoreCase(busNo)))
+				{
+					count=count+1;
+					ps.setInt(count, Integer.parseInt(busNo));
+				}
+				if(price!=null && !("".equalsIgnoreCase(price)))
+				{
+					count=count+1;
+					ps.setInt(count, Integer.parseInt(price));
+					
+				}
+				if(passengerId!=null && !("".equalsIgnoreCase(passengerId)))
+				{
+					count=count+1;
+					ps.setInt(count, Integer.parseInt(passengerId));
+				}
+				if(fromStop!=null && !("".equalsIgnoreCase(fromStop)))
+				{
+					count=count+1;
+					ps.setString(count, fromStop);
+				}
+				if(toStop!=null && !("".equalsIgnoreCase(toStop)))
+				{
+					count=count+1;
+					ps.setString(count, toStop);
+				}
+				count=count+1;
+				ps.setInt(count, Integer.parseInt(ticketNo));
+				rs=ps.executeUpdate();
+			}catch (SQLException e) {
+					// TODO Auto-generated catch block
+					return "Ticket update failed";
+				}
+				finally
+				{
+					try
+					{
+						if(ps!=null)
+							ps.close();
+						if(con!=null)
+							con.close();
+					}
+					catch(Exception e){
+				
+					}
+				}
+				
+			}
+		else {
+			return "Select Ticket to update!!";
+		}
+		
+		return "Ticket Update successful";
+			
+	}
+	public String deleteTicket(String ticketNo) 
+	{
+		// TODO Auto-generated method stub
+		Connection con=getConnection();
+		PreparedStatement ps=null;
+		int rs=0;
+		if(ticketNo!=null && !("".equalsIgnoreCase(ticketNo)) )
+		{
+			
+		
+			String query=" delete from tickettest where ticketNo= ? ";
+				try {
+					ps=con.prepareStatement(query);	
+					ps.setInt(1, Integer.parseInt(ticketNo));
+					rs=ps.executeUpdate();
+				}catch (SQLException e) {
+						// TODO Auto-generated catch block
+						return "Ticket Delete failed";
+					}
+					finally
+					{
+						try
+						{
+							if(ps!=null)
+								ps.close();
+							if(con!=null)
+								con.close();
+						}
+						catch(Exception e){
+					
+						}
+					}
+				
+			}
+		
+				
+			
+		else {
+			return "Select Ticket to Delete!!";
+		}
+		
+		return "Ticket Delete successful";
+			
+	}
 
 }
