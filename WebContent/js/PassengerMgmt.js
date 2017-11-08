@@ -160,10 +160,10 @@ function updatePassenger()
 function deletePassenger()
 {
 
-	var busNo=document.getElementById("busNo").value;
-	if(busNo!=null && busNo!=undefined && busNo!="" && busNo.trim()!="")
+	var passengerId=document.getElementById("passengerId").value;
+	if(passengerId!=null && passengerId!=undefined && passengerId!="" && passengerId.trim()!="")
 	{
-		var chkrslt=isNaN(busNo);
+		var chkrslt=isNaN(passengerId);
 		if(chkrslt==true)
 			{
 			alert("Passenger No.  cant be in text format. Enter valid number");
@@ -172,7 +172,7 @@ function deletePassenger()
 	$.ajax({
 		  url: "PassengerServlet",
 		  method: "POST",
-		  data: { serviceName: "deletePassenger",busNo:busNo },
+		  data: { serviceName: "deletePassenger",passengerId:passengerId },
 			success:function(data) {
 				if(data.indexOf("failed")==-1)
 					{

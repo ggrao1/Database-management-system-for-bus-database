@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ask.dao.EmployeeDao;
 import com.ask.dao.PassengerDao;
 import com.ask.model.Passenger;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -71,6 +70,13 @@ public class PassengerServlet extends HttpServlet {
 			String phone=(String)request.getParameter("phone");
 			String age=(String)request.getParameter("age");
 			String result=passengerDao.updatePassenger(passengerId,name,phone,age);
+			response.getWriter().write(result);
+		}
+		else if("deletePassenger".equalsIgnoreCase(request.getParameter("serviceName")))
+		{
+			PassengerDao passengerDao= new PassengerDao();
+			String passengerId=(String)request.getParameter("passengerId");
+			String result=passengerDao.deletePassenger(passengerId);
 			response.getWriter().write(result);
 		}
 		else

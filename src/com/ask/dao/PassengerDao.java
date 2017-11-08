@@ -262,5 +262,51 @@ public class PassengerDao {
 		return "Passenger Update successful";
 			
 	}
+	
+	
+	public String deletePassenger(String passengerId) 
+	{
+		// TODO Auto-generated method stub
+		Connection con=getConnection();
+		PreparedStatement ps=null;
+		int rs=0;
+		if(passengerId!=null && !("".equalsIgnoreCase(passengerId)) )
+		{
+			
+		
+			String query=" delete from passengertest where passengerId= ? ";
+				try {
+					ps=con.prepareStatement(query);	
+					ps.setInt(1, Integer.parseInt(passengerId));
+					rs=ps.executeUpdate();
+				}catch (SQLException e) {
+						// TODO Auto-generated catch block
+						return "Passenger Delete failed";
+					}
+					finally
+					{
+						try
+						{
+							if(ps!=null)
+								ps.close();
+							if(con!=null)
+								con.close();
+						}
+						catch(Exception e){
+					
+						}
+					}
+				
+			}
+		
+				
+			
+		else {
+			return "Select Passenger to Delete!!";
+		}
+		
+		return "Passenger Delete successful";
+			
+	}
 
 }

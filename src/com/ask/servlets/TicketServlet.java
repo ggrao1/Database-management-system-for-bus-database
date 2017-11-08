@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ask.dao.EmployeeDao;
 import com.ask.dao.TicketDao;
 import com.ask.model.Ticket;
 import com.fasterxml.jackson.databind.ObjectMapper;

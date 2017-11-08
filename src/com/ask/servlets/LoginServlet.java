@@ -1,16 +1,16 @@
 package com.ask.servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ask.dao.LoginDao;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 
@@ -31,13 +31,31 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if("logIn".equalsIgnoreCase(request.getParameter("serviceName")))
 		{
-			ObjectMapper mapper = new ObjectMapper();
 			LoginDao loginDao= new LoginDao();
 			String loginResult = "ERROR";
 			String username =(String)request.getParameter("username");
 			String password =(String)request.getParameter("password");
 			loginResult=loginDao.login(username,password);
 			response.getWriter().write(loginResult);
+			/*if("SUCCESS".equals(loginResult))
+			{
+				HttpSession session = request.getSession();
+				session.setAttribute("user", username);
+				//setting session to expiry in 30 mins
+				session.setMaxInactiveInterval(30*60);
+				String encodedURL = response.encodeRedirectURL(request.getContextPath() + "/index1.html");
+				System.out.println(encodedURL);
+				response.sendRedirect(encodedURL);
+			}
+			else
+			{
+				RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.html");
+				PrintWriter out= response.getWriter();
+				out.println("<font color=red>Either user name or password is wrong.</font>");
+				rd.include(request, response);
+			}*/
+			
+			
 		}
 	}
 

@@ -9,18 +9,15 @@ $.ajax({
 	  method: "GET",
 	  data: { serviceName: "logIn", username:username,password:password},
 		success:function(data) {
-
-				$("#error").empty();
-				
 					var loginResult=data;
 						if(loginResult=="SUCCESS"){
 							alert("login successful!!");
 							window.location="index1.html";
 						}
 						else{
-							$("#error").append( "Invalid username or password!!");
+							alert("Invalid username or password!!");
+							window.location="index.html";
 						}
-					
 		 },
 		 error:function(err){
 			 alert(err);

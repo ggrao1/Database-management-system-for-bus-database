@@ -194,7 +194,7 @@ function updateBus1()
 					}
 				else
 					{
-					alert("Save failed");
+					alert("Trriger violated");
 					}
 			 },
 			 error:function(err){

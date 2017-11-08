@@ -31,7 +31,7 @@ public class BusDao {
 			rs=ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			return "Bus creation failed";
+			return "Bus creation trigger voilated "+e;
 		}
 		finally
 		{
@@ -51,6 +51,9 @@ public class BusDao {
 		return "Bus creation successful";
 	}
 	
+	/*private String triggerCapacity() {
+		
+	}*/
 	private int getNextIdSeq()
 	{
 		int eseq=0;
@@ -181,7 +184,7 @@ public class BusDao {
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		finally

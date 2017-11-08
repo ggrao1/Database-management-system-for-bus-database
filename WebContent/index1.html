@@ -7,10 +7,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/w3.css">
 <style>
-body{
-background-color: black;
-height:100%;
-width:100%;
+html { 
+  background: url(folder/12.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  opacity:100;
 }
 h1{
 background-color:black;
@@ -22,25 +25,40 @@ width:100%;
 height:100%;
 }
 footer{
-	position:absolute; bottom:50px;
 	text-align:center;
-	
-	
-  position:relative;
-  
-  height:3em;
-  width:100%;
-  font-weight:700;
+	position:absolute;
+   bottom:0;
+   width:100%;
+   height:40px;
+  font-weight:300;
+  font-size: 20px;
   background-color:#000;
   color:#fff;
   clear:both;
-  filter:alpha(opacity=60);
    opacity:0.7;
 }
+/*header {
 
+ background-color:#262626;
+ width:100%;
+ height:0px;
+ box-shadow: 0px 1px 50px #5E5E5E;
+ position:fixed;
+ top:0px;
+
+}*/
+header {
+    height: 15%;
+    width:100%;
+    background-color:black;
+    position:fixed;
+    z-index:1;
+    top:0px;
+}
 </style>
 </head>
 <body>
+<header>
 <h1>Welcome to Bus Management System</h1>
 <nav class="w3-bar w3-black">
   <a href="displaydepo.html" class="w3-button w3-bar-item">Depo Management</a>
@@ -48,8 +66,9 @@ footer{
   <a href="displaybus.html" class="w3-button w3-bar-item">Bus Management</a>
   <a href="displayticket.html" class="w3-button w3-bar-item">Ticket Management</a>
   <a href="displaypassenger.html" class="w3-button w3-bar-item">Passenger Management</a>
+  <a href="index.html" class="w3-button w3-bar-item w3-right">Log Out</a>
 </nav>         
-<img src="folder/12.jpg" />
+</header>
 <footer>Miles of smiles!
      Always going your way!</footer>
 </body>
