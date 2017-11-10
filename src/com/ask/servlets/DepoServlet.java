@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ask.dao.DepoDao;
 import com.ask.model.Depo;
@@ -50,26 +51,50 @@ public class DepoServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		if("addDepo".equalsIgnoreCase(request.getParameter("serviceName")))
 		{
+			HttpSession session=request.getSession(false);
+			if(session!=null && session.getAttribute("user")!=null && !("").equalsIgnoreCase((String)session.getAttribute("user")))
+			{
 			ObjectMapper mapper = new ObjectMapper();
 			DepoDao depoDao= new DepoDao();
 			Depo depo = mapper.readValue(request.getParameter("depoRec"), Depo.class);
 			String result=depoDao.addDepo(depo);
 			response.getWriter().write(result);
+			}
+			else
+			{
+				response.getWriter().write("SESSIONTIMEOUT");
+			}
 		}
 		else if("updateDepo".equalsIgnoreCase(request.getParameter("serviceName")))
 		{
+			HttpSession session=request.getSession(false);
+			if(session!=null && session.getAttribute("user")!=null && !("").equalsIgnoreCase((String)session.getAttribute("user")))
+			{
 			DepoDao depoDao= new DepoDao();
 			String depoNo=(String)request.getParameter("depoNo");
 			String location=(String)request.getParameter("location");
 			String result=depoDao.updateDepo(depoNo,location);
 			response.getWriter().write(result);
+			}
+			else
+			{
+				response.getWriter().write("SESSIONTIMEOUT");
+			}
 		}
 		else if("deleteDepo".equalsIgnoreCase(request.getParameter("serviceName")))
 		{
+			HttpSession session=request.getSession(false);
+			if(session!=null && session.getAttribute("user")!=null && !("").equalsIgnoreCase((String)session.getAttribute("user")))
+			{
 			DepoDao depoDao= new DepoDao();
 			String depoNo=(String)request.getParameter("depoNo");
 			String result=depoDao.deleteDepo(depoNo);
 			response.getWriter().write(result);
+			}
+			else
+			{
+				response.getWriter().write("SESSIONTIMEOUT");
+			}
 		}
 		else
 		{

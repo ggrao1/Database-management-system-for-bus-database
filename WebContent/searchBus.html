@@ -6,6 +6,11 @@
 <script type="text/javascript" src="js/TicketMgmt.js"></script>
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 <link rel="stylesheet" href="css/w3.css">
+<script type="text/javascript" src="js/LogInMgmt.js"></script>
+<script>
+    $( document ).ready(function() {
+    	var b=checkUserPageAccess();	
+    });</script>
 <script>
     $( document ).ready(function() {
     	displayBus();
@@ -82,7 +87,7 @@ font-weight:300;
   <a href="index1.html" class="w3-button w3-bar-item w3-right">Home</a>
 </nav>
 </header>
-<div id="outPopUp" style="font-weight:600;opacity:0.8;background-color:#000;color:#fff;">
+<div id="outPopUp">
 <table>
 <tr><td><label class="lab1" for="busNo">Bus No.: </label></td>
 <td>
@@ -100,10 +105,10 @@ font-weight:300;
 <tr><td><label class="lab1" for="toStop">To location: </label></td>
 <td><input type="text" id="toStop"></input></td></tr>
 <tr><td></td><td>
-<button class="w3-button w3-grey" id="searchbtn" onclick="displayBus1()">Search Bus</button></td></tr>
+<button class="w3-button w3-black" id="searchbtn" onclick="displayBus1()">Search Bus</button></td></tr>
 </table>
 <br>
-<div style="font-weight:600;opacity:20;background-color:#000;color:#fff;" id="resultArea">
+<div style="font-weight:600;opacity:10;background-color:#000;color:#fff;" id="resultArea">
 <table id="busresltTable">
 
 </table>

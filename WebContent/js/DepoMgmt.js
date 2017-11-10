@@ -13,7 +13,12 @@ $.ajax({
 	  method: "POST",
 	  data: { serviceName: "addDepo",depoRec:JSON.stringify(depoObj) },
 		success:function(data) {
-			if(data.indexOf("failed")==-1)
+			if(data.indexOf("SESSIONTIMEOUT")!=-1)
+			{
+				alert("Session Timeout!! Redirecting to login page");
+				window.location="index.html";
+			}
+			else if(data.indexOf("failed")==-1)
 				{
 					alert(data);
 					window.location="addDepo.html";
@@ -53,7 +58,7 @@ $.ajax({
 		success:function(data) {
 
 				$("#deporesltTable").empty();
-				$("#deporesltTable").append( "<th> Depo Id </th><th> Location </th>");
+				$("#deporesltTable").append( "<th> Depo Id </th><th>Location </th>");
 					var depoArray=JSON.parse(data);
 					for(i=0;i<depoArray.length;i++)
 					{
@@ -87,7 +92,7 @@ $.ajax({
 					for(i=0;i<depoArray.length;i++)
 					{
 						var depo=depoArray[i];
-						$("#depoNo").append("<option value=\""+depo.depoNo+"\">| "+depo.depoNo+"</option>");
+						$("#depoNo").append("<option value=\""+depo.depoNo+"\"> "+depo.depoNo+"</option>");
 					}
 					
 			    
@@ -118,6 +123,11 @@ function updateDepo()
 		  method: "POST",
 		  data: { serviceName: "updateDepo",depoNo:depoNo,location:location },
 			success:function(data) {
+				if(data.indexOf("SESSIONTIMEOUT")!=-1)
+				{
+					alert("Session Timeout!! Redirecting to login page");
+					window.location="index.html";
+				}
 				if(data.indexOf("failed")==-1)
 					{
 						alert(data);
@@ -154,7 +164,12 @@ function deleteDepo()
 		  method: "POST",
 		  data: { serviceName: "deleteDepo",depoNo:depoNo },
 			success:function(data) {
-				if(data.indexOf("failed")==-1)
+				if(data.indexOf("SESSIONTIMEOUT")!=-1)
+				{
+					alert("Session Timeout!! Redirecting to login page");
+					window.location="index.html";
+				}
+				else if(data.indexOf("failed")==-1)
 					{
 						alert(data);
 						window.location="deleteDepo.html";

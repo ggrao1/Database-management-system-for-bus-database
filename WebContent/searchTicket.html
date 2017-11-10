@@ -5,6 +5,11 @@
 <script type="text/javascript" src="js/TicketMgmt.js"></script>
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 <link rel="stylesheet" href="css/w3.css">
+<script type="text/javascript" src="js/LogInMgmt.js"></script>
+<script>
+    $( document ).ready(function() {
+    	var b=checkUserPageAccess();	
+    });</script>
 <script>
     $( document ).ready(function() {
     	displayBus();
@@ -17,61 +22,101 @@
     $( document ).ready(function() {
     	displayTicket1();
     });</script>
-    <style>
-body{
-background-color: lightgrey;
-}
-h1 {
-    color: black;
-    text-align: center;
+<style>
+html { 
+  background: url(folder/21.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  opacity:0.9;
 }
 footer{
-	position:absolute; bottom:20px;
-	left:40%;
+	text-align:center;
+	position:absolute;
+   bottom:0;
+   width:100%;
+   height:40px;
+  font-weight:300;
+  font-size: 20px;
+  background-color:#000;
+  color:#fff;
+  clear:both;
+   opacity:0.7;
 }
-
+h1{
+background-color:black;
+color:white;
+text-align:center;
+}
+header {
+    height: 15%;
+    width:100%;
+    background-color:black;
+    position:fixed;
+    z-index:1;
+    top:0px;
+}
+#outPopUp {
+  position: absolute;
+  width: 500px;
+  height: 300px;
+  z-index: 15;
+  top: 50%;
+  left: 50%;
+  margin-top: -200px;
+    margin-bottom: 0;
+    margin-right: 0;
+    margin-left: -670px;
+}
+.lab1{
+font-weight:300;
+  font-size: 20px;
+  opacity:10;
+}
 </style>
 <title>Search Ticket</title>
 </head>
-<body>
+<body><header>
+<h1> Search Ticket's </h1>
 <nav class="w3-bar w3-black" >
   <a href="displaydepo.html" class="w3-button w3-bar-item">Depo Management</a>
   <a href="displayemployee.html" class="w3-button w3-bar-item">Employee Management</a>
   <a href="displaybus.html" class="w3-button w3-bar-item">Bus Management</a>
   <a href="displayticket.html" class="w3-button w3-bar-item">Ticket Management</a>
   <a href="displaypassenger.html" class="w3-button w3-bar-item">Passenger Management</a>
-  <a href="index.html" class="w3-button w3-bar-item w3-right">Log Out</a>
+  <a href="index.html" onClick="logOut()" class="w3-button w3-bar-item w3-right">Log Out</a>
   <a href="index1.html" class="w3-button w3-bar-item w3-right">Home</a>
 </nav>
-<h1> Search Ticket's </h1>
-<hr>
+</header>
+<div id="outPopUp">
 <table>
-<tr><td><label for="ticketNo">Ticket No: </label></td>
+<tr><td><label class="lab1" for="ticketNo">Ticket No: </label></td>
 <td>
 <div id="ticketdiv"></div>
 </td></tr>
-<tr><td><label for="busNo">Bus No.: </label></td>
+<tr><td><label class="lab1" for="busNo">Bus No.: </label></td>
 <td>
 <div id="busdiv">
 </div></td></tr>
-<tr><td><label for="price">Ticket Price: </label></td>
+<tr><td><label class="lab1" for="price">Ticket Price: </label></td>
 <td><input type="text"  id="price"></input></td></tr>
-<tr><td><label for="passengerId">Passanger ID: </label></td>
+<tr><td><label class="lab1" for="passengerId">Passanger ID: </label></td>
 <td>
 <div id="passengerdiv"></div></td></tr>
-<tr><td><label for="fromStop">From location: </label></td>
+<tr><td><label class="lab1" for="fromStop">From location: </label></td>
 <td><input type="text" id="fromStop"></input></td></tr>
-<tr><td><label for="toStop">To location: </label></td>
+<tr><td><label class="lab1" for="toStop">To location: </label></td>
 <td><input type="text" id="toStop"></input></td></tr>
 <tr><td>
 <button class="w3-button w3-black" id="searchbtn" onclick="displayTicket()">Search Ticket</button></td></tr>
 </table>
 <br>
-<div id="resultArea">
+<div style="font-weight:600;opacity:10;background-color:#000;color:#fff; width:600px;" id="resultArea">
 <table id="ticketresltTable">
 </table>
 
 </div>
-
+</div>
 </body>
 </html>

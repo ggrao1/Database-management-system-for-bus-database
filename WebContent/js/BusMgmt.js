@@ -15,7 +15,14 @@ $.ajax({
 	  method: "POST",
 	  data: { serviceName: "addBus",busRec:JSON.stringify(busObj) },
 		success:function(data) {
-			if(data.indexOf("failed")==-1)
+			if(data.indexOf("SESSIONTIMEOUT")!=-1)
+			{
+				alert("Session Timeout!! Redirecting to login page");
+				window.location="index.html";
+			}
+			
+			
+			else if(data.indexOf("failed")==-1)
 				{
 					alert(data);
 					window.location="addBus.html";
@@ -107,11 +114,8 @@ $.ajax({
 					for(i=0;i<depoArray.length;i++)
 					{
 						var depo=depoArray[i];
-						$("#depoNo").append("<option value=\""+depo.depoNo+"\">"+depo.location+"</option>");
+						$("#depoNo").append("<option value=\""+depo.depoNo+"\">| "+depo.depoNo+" | "+depo.location+"</option>");
 					}
-					
-			    
-
 		 },
 		 error:function(err){
 			 alert(err);
@@ -187,7 +191,12 @@ function updateBus1()
 		  method: "POST",
 		  data: { serviceName: "updateBus",busNo:busNo,depoNo:depoNo,capacity:capacity,fromStop:fromStop,toStop:toStop },
 			success:function(data) {
-				if(data.indexOf("failed")==-1)
+				if(data.indexOf("SESSIONTIMEOUT")!=-1)
+				{
+					alert("Session Timeout!! Redirecting to login page");
+					window.location="index.html";
+				}
+				else if(data.indexOf("failed")==-1)
 					{
 						alert(data);
 						window.location="updateBus.html";
@@ -223,7 +232,12 @@ function deleteBus8()
 		  method: "POST",
 		  data: { serviceName: "deleteBus",busNo:busNo },
 			success:function(data) {
-				if(data.indexOf("failed")==-1)
+				if(data.indexOf("SESSIONTIMEOUT")!=-1)
+				{
+					alert("Session Timeout!! Redirecting to login page");
+					window.location="index.html";
+				}
+				else if(data.indexOf("failed")==-1)
 					{
 						alert(data);
 						window.location="deleteBus.html";

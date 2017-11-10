@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ask.dao.PassengerDao;
 import com.ask.model.Passenger;
@@ -56,14 +57,25 @@ public class PassengerServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		if("addPassenger".equalsIgnoreCase(request.getParameter("serviceName")))
 		{
+			HttpSession session=request.getSession(false);
+			if(session!=null && session.getAttribute("user")!=null && !("").equalsIgnoreCase((String)session.getAttribute("user")))
+			{
 			ObjectMapper mapper = new ObjectMapper();
 			PassengerDao passDao= new PassengerDao();
 			Passenger pass = mapper.readValue(request.getParameter("passRec"), Passenger.class);
 			String result=passDao.addPassenger(pass);
 			response.getWriter().write(result);
+			}
+			else
+			{
+				response.getWriter().write("SESSIONTIMEOUT");
+			}
 		}
 		else if("updatePassenger".equalsIgnoreCase(request.getParameter("serviceName")))
 		{
+			HttpSession session=request.getSession(false);
+			if(session!=null && session.getAttribute("user")!=null && !("").equalsIgnoreCase((String)session.getAttribute("user")))
+			{
 			PassengerDao passengerDao= new PassengerDao();
 			String passengerId=(String)request.getParameter("passengerId");
 			String name=(String)request.getParameter("name");
@@ -71,13 +83,26 @@ public class PassengerServlet extends HttpServlet {
 			String age=(String)request.getParameter("age");
 			String result=passengerDao.updatePassenger(passengerId,name,phone,age);
 			response.getWriter().write(result);
+			}
+			else
+			{
+				response.getWriter().write("SESSIONTIMEOUT");
+			}
 		}
 		else if("deletePassenger".equalsIgnoreCase(request.getParameter("serviceName")))
 		{
+			HttpSession session=request.getSession(false);
+			if(session!=null && session.getAttribute("user")!=null && !("").equalsIgnoreCase((String)session.getAttribute("user")))
+			{
 			PassengerDao passengerDao= new PassengerDao();
 			String passengerId=(String)request.getParameter("passengerId");
 			String result=passengerDao.deletePassenger(passengerId);
 			response.getWriter().write(result);
+			}
+			else
+			{
+				response.getWriter().write("SESSIONTIMEOUT");
+			}
 		}
 		else
 		{

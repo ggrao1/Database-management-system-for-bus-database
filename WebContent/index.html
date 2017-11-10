@@ -8,7 +8,7 @@
 		<title>Admin LogIn</title>
 <style>
 html { 
-  background: url(folder/22.jpg) no-repeat center center fixed; 
+  background: url(folder/43.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -16,52 +16,76 @@ html {
 }
 
 h1 {
-    color: black;
+    color: white;
     font-size:40px;
     text-align: center;
     text-size: 200%;
     font-weight:700;
 }
+.cc{
+background-color:black;
+color:white;
+text-align:center;
+}
+header {
+    height: 13%;
+    width:100%;
+    position:fixed;
+    z-index:1;
+    top:0px;
+    background-color:#000;
+  color:#fff;
+  clear:both;
+   opacity:0.86;
+}
 button {
-    border: 2px solid grey;
+    border: 2px solid blavk;
     border-radius: 5px;
     border: round;
     cursor: pointer;
     width: 40%;
-    height:60%;
-    filter:alpha(opacity=60);
-   /* CSS3 standard */
+    padding-top:15px;
+    height:70%;
    opacity:0.7;
+   background-color:#000;
+  color:#fff;
 }
 footer{
-	position:absolute; bottom:00px;
+	position:fixed; 
 	text-align:center;
+	top:700px;
   margin:-3em 0 0;
   height:3em;
-  width:100%;
+  width:99.99%;
   float:none;
   background-color:#000;
   color:#fff;
   clear:both;
    opacity:0.7;
-
 }
-table{
-left:35%;
-top:17%;
+.b1{
+left:470px;
+top:200px;
 right:0px;position:absolute;
-
+border-radius: 15px 50px;
+    background-color:#000;
+    padding-left:10px;
+  color:#fff;
+  clear:both;
+   opacity:0.7;
+	width:340px;
+	height:200px;
 }
 .z2{
-font-weight:900;
+font-weight:800;
 }
 </style>
 	</head>
-	<body>
-
-		<div class="b1">
-		<table>
-		<tr><td></td><td><h1>Admin LogIn</h1></td><td></td></tr>
+	<body >
+	<header><h1 class="cc">Bus Management System</h1></header>
+		<div class="b1" >
+		
+		<h1>Admin Login</h1><table>
 			<tr>
 				<td>
 					<label class="z2" for="username">User Name:</label>
@@ -80,13 +104,13 @@ font-weight:900;
 			</tr>
 			<tr><td></td>
 				<td>
-					<button id="searchbtn"  class="z2" onclick="logIn()">Log In</button>
+					<button class="w3-button w3-white" id="searchbtn"  class="z2" onclick="logIn()">Log In</button>
 				</td>
 			</tr> 
 		</table></div>
 
-		<footer><h6>Connecting people, places and parcels.
+		<footer><h4>Connecting people, places and parcels.
      Ride it. Ship it. Bus it.
-     Your bus ride!</h6></footer>
+     Your bus ride!</h4></footer>
 	</body>
 </html>

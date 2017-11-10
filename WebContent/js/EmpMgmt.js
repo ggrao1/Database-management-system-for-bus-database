@@ -18,7 +18,12 @@ $.ajax({
 	  method: "POST",
 	  data: { serviceName: "addEmployee",empRec:JSON.stringify(empObj) },
 		success:function(data) {
-			if(data.indexOf("failed")==-1)
+			if(data.indexOf("SESSIONTIMEOUT")!=-1)
+			{
+				alert("Session Timeout!! Redirecting to login page");
+				window.location="index.html";
+			}
+			else if(data.indexOf("failed")==-1)
 				{
 					alert(data);
 					window.location="addEmp.html";
@@ -191,7 +196,12 @@ $.ajax({
 	  method: "POST",
 	  data: { serviceName: "updateEmployee",empId:empId,empName:empName,empDob:empDob,empSex:empSex,busNo:busNo,empSalary:empSalary },
 		success:function(data) {
-			if(data.indexOf("failed")==-1)
+			if(data.indexOf("SESSIONTIMEOUT")!=-1)
+			{
+				alert("Session Timeout!! Redirecting to login page");
+				window.location="index.html";
+			}
+			else if(data.indexOf("failed")==-1)
 				{
 					alert(data);
 					window.location="updateEmp.html";
@@ -226,7 +236,12 @@ $.ajax({
 	  method: "POST",
 	  data: { serviceName: "deleteEmployee",empId:empId },
 		success:function(data) {
-			if(data.indexOf("failed")==-1)
+			if(data.indexOf("SESSIONTIMEOUT")!=-1)
+			{
+				alert("Session Timeout!! Redirecting to login page");
+				window.location="index.html";
+			}
+			else if(data.indexOf("failed")==-1)
 				{
 					alert(data);
 					window.location="deleteEmp.html";

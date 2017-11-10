@@ -16,7 +16,12 @@ $.ajax({
 	  method: "POST",
 	  data: { serviceName: "addPassenger",passRec:JSON.stringify(passObj) },
 		success:function(data) {
-			if(data.indexOf("failed")==-1)
+			if(data.indexOf("SESSIONTIMEOUT")!=-1)
+			{
+				alert("Session Timeout!! Redirecting to login page");
+				window.location="index.html";
+			}
+			else if(data.indexOf("failed")==-1)
 				{
 					alert(data);
 					window.location="addPassenger.html";
@@ -137,7 +142,12 @@ function updatePassenger()
 		  method: "POST",
 		  data: { serviceName: "updatePassenger",passengerId:passengerId,name:name,phone:phone,age:age },
 			success:function(data) {
-				if(data.indexOf("failed")==-1)
+				if(data.indexOf("SESSIONTIMEOUT")!=-1)
+				{
+					alert("Session Timeout!! Redirecting to login page");
+					window.location="index.html";
+				}
+				else if(data.indexOf("failed")==-1)
 					{
 						alert(data);
 						window.location="updatePassenger.html";
@@ -174,7 +184,12 @@ function deletePassenger()
 		  method: "POST",
 		  data: { serviceName: "deletePassenger",passengerId:passengerId },
 			success:function(data) {
-				if(data.indexOf("failed")==-1)
+				if(data.indexOf("SESSIONTIMEOUT")!=-1)
+				{
+					alert("Session Timeout!! Redirecting to login page");
+					window.location="index.html";
+				}
+				else if(data.indexOf("failed")==-1)
 					{
 						alert(data);
 						window.location="deletePassenger.html";

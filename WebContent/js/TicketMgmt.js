@@ -16,7 +16,12 @@ $.ajax({
 	  method: "POST",
 	  data: { serviceName: "addTicket",ticketRec:JSON.stringify(ticketObj) },
 		success:function(data) {
-			if(data.indexOf("failed")==-1)
+			if(data.indexOf("SESSIONTIMEOUT")!=-1)
+			{
+				alert("Session Timeout!! Redirecting to login page");
+				window.location="index.html";
+			}
+			else if(data.indexOf("failed")==-1)
 				{
 					alert(data);
 					window.location="addTicket.html";
@@ -259,7 +264,12 @@ function updateTicket()
 		  method: "POST",
 		  data: { serviceName: "updateTicket",ticketNo:ticketNo, busNo:busNo,passengerId:passengerId,price:price,fromStop:fromStop,toStop:toStop},
 			success:function(data) {
-				if(data.indexOf("failed")==-1)
+				if(data.indexOf("SESSIONTIMEOUT")!=-1)
+				{
+					alert("Session Timeout!! Redirecting to login page");
+					window.location="index.html";
+				}
+				else if(data.indexOf("failed")==-1)
 					{
 						alert(data);
 						window.location="updateTicket.html";
@@ -294,7 +304,12 @@ function deleteTicket()
 		  method: "POST",
 		  data: { serviceName: "deleteTicket",ticketNo:ticketNo},
 			success:function(data) {
-				if(data.indexOf("failed")==-1)
+				if(data.indexOf("SESSIONTIMEOUT")!=-1)
+				{
+					alert("Session Timeout!! Redirecting to login page");
+					window.location="index.html";
+				}
+				else if(data.indexOf("failed")==-1)
 					{
 						alert(data);
 						window.location="deleteTicket.html";

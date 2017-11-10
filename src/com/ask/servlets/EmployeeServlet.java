@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ask.dao.EmployeeDao;
 import com.ask.model.Employee;
@@ -61,15 +62,26 @@ public class EmployeeServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		if("addEmployee".equalsIgnoreCase(request.getParameter("serviceName")))
 		{
+			HttpSession session=request.getSession(false);
+			if(session!=null && session.getAttribute("user")!=null && !("").equalsIgnoreCase((String)session.getAttribute("user")))
+			{
 			ObjectMapper mapper = new ObjectMapper();
 			EmployeeDao empDao= new EmployeeDao();
 			Employee emp = mapper.readValue(request.getParameter("empRec"), Employee.class);
 			String result=empDao.addEmployee(emp);
 			response.getWriter().write(result);
 		}
+		else
+		{
+			response.getWriter().write("SESSIONTIMEOUT");
+		}
+		}
 		
 		else if("updateEmployee".equalsIgnoreCase(request.getParameter("serviceName")))
 		{
+			HttpSession session=request.getSession(false);
+			if(session!=null && session.getAttribute("user")!=null && !("").equalsIgnoreCase((String)session.getAttribute("user")))
+			{
 			EmployeeDao empDao= new EmployeeDao();
 			String empId=(String)request.getParameter("empId");
 			String empName=(String)request.getParameter("empName");
@@ -80,13 +92,26 @@ public class EmployeeServlet extends HttpServlet {
 			String result=empDao.updateEmployee(empId,empName,empDob,empSex,busNo,empSalary);
 			response.getWriter().write(result);
 		}
+		else
+		{
+			response.getWriter().write("SESSIONTIMEOUT");
+		}
+		}
 		
 		else if("deleteEmployee".equalsIgnoreCase(request.getParameter("serviceName")))
 		{
+			HttpSession session=request.getSession(false);
+			if(session!=null && session.getAttribute("user")!=null && !("").equalsIgnoreCase((String)session.getAttribute("user")))
+			{
 			EmployeeDao empDao= new EmployeeDao();
 			String empId=(String)request.getParameter("empId");
 			String result=empDao.deleteEmployee(empId);
 			response.getWriter().write(result);
+		}
+		else
+		{
+			response.getWriter().write("SESSIONTIMEOUT");
+		}
 		}
 		else
 		{

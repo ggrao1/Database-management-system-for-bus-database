@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ask.dao.TicketDao;
 import com.ask.model.Ticket;
@@ -55,14 +56,25 @@ public class TicketServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		if("addTicket".equalsIgnoreCase(request.getParameter("serviceName")))
 		{
-			ObjectMapper mapper = new ObjectMapper();
-			TicketDao ticketDao= new TicketDao();
-			Ticket ticket = mapper.readValue(request.getParameter("ticketRec"), Ticket.class);
-			String result=ticketDao.addTicket(ticket); 
-			response.getWriter().write(result);
+			HttpSession session=request.getSession(false);
+			if(session!=null && session.getAttribute("user")!=null && !("").equalsIgnoreCase((String)session.getAttribute("user")))
+			{
+				ObjectMapper mapper = new ObjectMapper();
+				TicketDao ticketDao= new TicketDao();
+				Ticket ticket = mapper.readValue(request.getParameter("ticketRec"), Ticket.class);
+				String result=ticketDao.addTicket(ticket); 
+				response.getWriter().write(result);
+			}
+			else
+			{
+				response.getWriter().write("SESSIONTIMEOUT");
+			}
 		}
 		else if("updateTicket".equalsIgnoreCase(request.getParameter("serviceName")))
 		{
+			HttpSession session=request.getSession(false);
+			if(session!=null && session.getAttribute("user")!=null && !("").equalsIgnoreCase((String)session.getAttribute("user")))
+			{
 			TicketDao ticketDao= new TicketDao();
 			String ticketNo=(String)request.getParameter("ticketNo");
 			String busNo=(String)request.getParameter("busNo");
@@ -73,12 +85,25 @@ public class TicketServlet extends HttpServlet {
 			String result=ticketDao.updateTicket(ticketNo,busNo,passengerId,price,fromStop,toStop);
 			response.getWriter().write(result);
 		}
+		else
+		{
+			response.getWriter().write("SESSIONTIMEOUT");
+		}
+		}
 		else if("deleteTicket".equalsIgnoreCase(request.getParameter("serviceName")))
 		{
+			HttpSession session=request.getSession(false);
+			if(session!=null && session.getAttribute("user")!=null && !("").equalsIgnoreCase((String)session.getAttribute("user")))
+			{
 			TicketDao ticketDao= new TicketDao();
 			String ticketNo=(String)request.getParameter("ticketNo");
 			String result=ticketDao.deleteTicket(ticketNo);
 			response.getWriter().write(result);
+		}
+		else
+		{
+			response.getWriter().write("SESSIONTIMEOUT");
+		}
 		}
 		else
 		{
