@@ -1,13 +1,11 @@
-function saveTicket()
+/*function saveTicket()
 {
 var passengerId=document.getElementById("passengerId").value;
-var busNo=document.getElementById("busNo").value;
-var price=document.getElementById("price").value;
-var fromStop=document.getElementById("fromStop").value;
-var toStop=document.getElementById("toStop").value;
+var tripId=document.getElementById("tripId").value;
+var status=document.getElementById("status").value;
 
 var ticketObj={
-		"busNo":busNo,"passengerId":passengerId,"price":price,"fromStop":fromStop,"toStop":toStop
+		"passengerId":passengerId,"tripId":tripId,"status":status
 };
 
 
@@ -37,17 +35,15 @@ $.ajax({
 
 	});
 
-}  
+}  */
 
 function displayTicket()
 {
 
 	var ticketNo=document.getElementById("ticketNo").value;
-	var busNo=document.getElementById("busNo").value;
-	var price=document.getElementById("price").value;
 	var passengerId=document.getElementById("passengerId").value;
-	var fromStop=document.getElementById("fromStop").value;
-	var toStop=document.getElementById("toStop").value;
+	var status=document.getElementById("status").value;
+	var tripId=document.getElementById("tripId").value;
 	if(ticketNo!=null && ticketNo!=undefined && ticketNo!="" && ticketNo.trim()!="")
 	{
 		var chkrslt=isNaN(ticketNo);
@@ -56,20 +52,12 @@ function displayTicket()
 			alert("Ticket No.  cant be in text format. Enter valid number");
 			}  
 	}
-	if(price!=null && price!=undefined && price!="" && price.trim()!="")
+	if(tripId!=null && tripId!=undefined && tripId!="" && tripId.trim()!="")
 	{
-		var chkrslt=isNaN(price);
+		var chkrslt=isNaN(tripId);
 		if(chkrslt==true)
 			{
-			alert("price  cant be in text format. Enter valid number");
-			}  
-	}
-	if(busNo!=null && busNo!=undefined && busNo!="" && busNo.trim()!="")
-	{
-		var chkrslt=isNaN(busNo);
-		if(chkrslt==true)
-			{
-			alert("Bus No.  cant be in text format. Enter valid number");
+			alert("tripId  cant be in text format. Enter valid number");
 			}  
 	}
 	if(passengerId!=null && passengerId!=undefined && passengerId!="" && passengerId.trim()!="")
@@ -84,16 +72,16 @@ function displayTicket()
 $.ajax({
 	  url: "TicketServlet",
 	  method: "GET",
-	  data: { serviceName: "displayTicket",ticketNo:ticketNo, busNo:busNo,passengerId:passengerId,price:price,fromStop:fromStop,toStop:toStop},
+	  data: { serviceName: "displayTicket",ticketNo:ticketNo,passengerId:passengerId,tripId:tripId,status:status},
 		success:function(data) {
 
 				$("#ticketresltTable").empty();
-				$("#ticketresltTable").append( "<th> Ticket No. </th><th> Bus No. </th><th> Passenger ID </th><th> price </th><th> From Location </th><th> To Location </th>");
+				$("#ticketresltTable").append( "<th> Ticket No. </th><th> Passenger ID </th><th> Trip Id </th><th> Status </th>");
 					var ticketArray=JSON.parse(data);
 					for(i=0;i<ticketArray.length;i++)
 					{
 						var ticket=ticketArray[i];
-						$("#ticketresltTable").append('<tr><td>'+" "+ticket.ticketNo+" "+'</td><td>'+" "+ticket.busNo+" "+'</td><td>'+" "+ticket.passengerId+" "+'</td><td>'+" "+ticket.price+" "+'</td><td>'+" "+ticket.fromStop+" "+'</td><td>'+" "+ticket.toStop+" "+'</td></tr>');
+						$("#ticketresltTable").append('<tr><td>'+" "+ticket.ticketNo+" "+'</td><td>'+" "+ticket.passengerId+" "+'</td><td>'+" "+ticket.tripId+" "+'</td><td>'+" "+ticket.status+" "+'</td></tr>');
 					}
 
 		 },
@@ -201,14 +189,15 @@ $.ajax({
 		success:function(data) {
 
 				$("#ticketdiv").empty();
-				$("#a1").append( "<option value=\"\"> Ticket No. | Bus No. | Passenger Id | Price | From Location. | To Location |");
+				$("#a1").append( "<option value=\"\"> Ticket No.  | Passenger Id | Trip Id. |  status. |");
 				$("#ticketdiv").append("<select id=\"ticketNo\"></select>" );
 				$("#ticketNo").append("<option value=\"\">Select Ticket</option>");
 					var ticketArray=JSON.parse(data);
 					for(i=0;i<ticketArray.length;i++)
 					{
 						var ticket=ticketArray[i];
-						$("#ticketNo").append("<option value=\""+ticket.ticketNo+"\">| "+ticket.ticketNo+" | "+ticket.busNo+" | "+ticket.passengerId+" | "+ticket.price+" | "+ticket.fromStop+" | "+ticket.toStop+" | </option>");
+						if(ticket.status=="Booked")
+						$("#ticketNo").append("<option value=\""+ticket.ticketNo+"\">| "+ticket.ticketNo+" | "+ticket.passengerId+" | "+ticket.tripId+" | "+ticket.status+" | </option>");
 					}
 
 		 },
@@ -222,11 +211,6 @@ function updateTicket()
 {
 
 	var ticketNo=document.getElementById("ticketNo").value;
-	var busNo=document.getElementById("busNo").value;
-	var price=document.getElementById("price").value;
-	var passengerId=document.getElementById("passengerId").value;
-	var fromStop=document.getElementById("fromStop").value;
-	var toStop=document.getElementById("toStop").value;
 	if(ticketNo!=null && ticketNo!=undefined && ticketNo!="" && ticketNo.trim()!="")
 	{
 		var chkrslt=isNaN(ticketNo);
@@ -235,34 +219,10 @@ function updateTicket()
 			alert("Ticket No.  cant be in text format. Enter valid number");
 			}  
 	}
-	if(price!=null && price!=undefined && price!="" && price.trim()!="")
-	{
-		var chkrslt=isNaN(price);
-		if(chkrslt==true)
-			{
-			alert("price  cant be in text format. Enter valid number");
-			}  
-	}
-	if(busNo!=null && busNo!=undefined && busNo!="" && busNo.trim()!="")
-	{
-		var chkrslt=isNaN(busNo);
-		if(chkrslt==true)
-			{
-			alert("Bus No.  cant be in text format. Enter valid number");
-			}  
-	}
-	if(passengerId!=null && passengerId!=undefined && passengerId!="" && passengerId.trim()!="")
-	{
-		var chkrslt=isNaN(passengerId);
-		if(chkrslt==true)
-			{
-			alert("passengerId cant be in text format. Enter valid number");
-			}  
-	}
 	$.ajax({
 		  url: "TicketServlet",
 		  method: "POST",
-		  data: { serviceName: "updateTicket",ticketNo:ticketNo, busNo:busNo,passengerId:passengerId,price:price,fromStop:fromStop,toStop:toStop},
+		  data: { serviceName: "updateTicket",ticketNo:ticketNo},
 			success:function(data) {
 				if(data.indexOf("SESSIONTIMEOUT")!=-1)
 				{
@@ -287,7 +247,7 @@ function updateTicket()
 
 	} 
 
-function deleteTicket()
+/*function deleteTicket()
 {
 
 	var ticketNo=document.getElementById("ticketNo").value;
@@ -325,4 +285,4 @@ function deleteTicket()
 
 		});
 
-	}
+	}*/

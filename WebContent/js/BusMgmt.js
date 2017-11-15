@@ -10,6 +10,7 @@ var busObj={
 };
 
 
+
 $.ajax({
 	  url: "BusServlet",
 	  method: "POST",

@@ -262,6 +262,7 @@ public class BusDao {
 				count=count+1;
 				ps.setInt(count, Integer.parseInt(busNo));
 				rs=ps.executeUpdate();
+				
 			}catch (SQLException e) {
 					// TODO Auto-generated catch block
 					return "Bus update failed";

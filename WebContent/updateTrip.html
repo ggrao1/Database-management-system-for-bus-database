@@ -2,9 +2,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<script type="text/javascript" src="js/DepoMgmt.js"></script>
-<script type="text/javascript" src="js/BusMgmt.js"></script>
+<title>Update Trip</title>
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/TicketMgmt.js"></script>
+<script type="text/javascript" src="js/TripMgmt.js"></script>
 <link rel="stylesheet" href="css/w3.css">
 <script type="text/javascript" src="js/LogInMgmt.js"></script>
 <script>
@@ -13,15 +14,15 @@
     });</script>
 <script>
     $( document ).ready(function() {
-    	displayDepo();
+    	displayBus();
     });</script>
     <script>
     $( document ).ready(function() {
-    	displayDepo();
+    	displayTrip5();
     });</script>
-<style>
+    <style>
 html { 
-  background: url(folder/222.jpeg) no-repeat center center fixed; 
+  background: url(folder/35.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -56,7 +57,7 @@ header {
 }
 #outPopUp {
   position: absolute;
-  width: 500px;
+  width: 700px;
   height: 300px;
   z-index: 15;
   top: 50%;
@@ -72,10 +73,10 @@ font-weight:300;
   opacity:10;
 }
 </style>
-<title>Update Depot</title>
 </head>
-<body><header>
-<h1> Update Depot's </h1>
+<body>
+<header>
+<h1> Update Trip </h1>
 <nav class="w3-bar w3-black" >
   <a href="displaydepo.html" class="w3-button w3-bar-item">Depo Management</a>
   <a href="displayemployee.html" class="w3-button w3-bar-item">Employee Management</a>
@@ -90,17 +91,27 @@ font-weight:300;
 </header>
 <div id="outPopUp">
 <table>
-<tr><td></td><td>
-<div id="a1"></div></td></tr>
-<tr><td><label class="lab1" for="depoNo">Depot: </label></td>
+<tr><td></td><td><div id="a1"></div></td></tr>
+<tr><td><label class="lab1" for="tripId">Select Trip to Updated: </label></td>
 <td>
-<div id="deposeldiv">
+<div id="tripdiv"></div>
+</td></tr>
+<tr><td>
+<label class="lab1" for="tripDate">Trip Date: </label></td>
+<td><input type="date" id="tripDate"></input></td></tr>
+<tr><td>
+<label class="lab1" for="tripTime">Trip Date: </label></td>
+<td><input type="time" id="tripTime"></input></td></tr>
+<tr><td><label class="lab1" for="busNo">Bus No.: </label></td>
+<td>
+<div id="busdiv">
 </div>
 </td></tr>
-<tr><td><label class="lab1" for="location">Depo Location: </label></td>
-<td><input type="text" id="location"></input></td></tr>
-<tr><td>
-<button class="w3-button w3-black" id="updatebtn" onclick="updateDepo()">Update</button></td></tr>
+<tr><td><label class="lab1" for="price">Ticket Price: </label></td>
+<td><input type="text"  id="price"></input></td></tr>
+<tr><td></td>
+<td>
+<button class="w3-button w3-black" id="updatebtn" onclick="updateTrip()">Update</button></td></tr>
 </table>
 </div>
 </body>

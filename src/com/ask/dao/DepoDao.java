@@ -1,5 +1,6 @@
 package com.ask.dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -247,15 +248,15 @@ public class DepoDao {
 	{
 		// TODO Auto-generated method stub
 		Connection con=getConnection();
-		PreparedStatement ps=null;
+		CallableStatement ps=null;
 		int rs=0;
 		if(depoNo!=null && !("".equalsIgnoreCase(depoNo)) )
 		{
 			
 		
-			String query=" delete from depotest where depoId= ? ";
+			String query=" {call remove(?)} ";
 				try {
-					ps=con.prepareStatement(query);	
+					ps=con.prepareCall(query);	
 					ps.setInt(1, Integer.parseInt(depoNo));
 					rs=ps.executeUpdate();
 				}catch (SQLException e) {

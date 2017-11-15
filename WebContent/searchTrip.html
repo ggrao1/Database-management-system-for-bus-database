@@ -2,26 +2,26 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<script type="text/javascript" src="js/DepoMgmt.js"></script>
-<script type="text/javascript" src="js/BusMgmt.js"></script>
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/TripMgmt.js"></script>
+<script type="text/javascript" src="js/TicketMgmt.js"></script>
 <link rel="stylesheet" href="css/w3.css">
 <script type="text/javascript" src="js/LogInMgmt.js"></script>
 <script>
     $( document ).ready(function() {
     	var b=checkUserPageAccess();	
     });</script>
-<script>
+    <script>
     $( document ).ready(function() {
-    	displayDepo();
+    	displayBus();
     });</script>
     <script>
     $( document ).ready(function() {
-    	displayDepo();
+    	displayTrip();
     });</script>
 <style>
 html { 
-  background: url(folder/222.jpeg) no-repeat center center fixed; 
+  background: url(folder/35.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -56,7 +56,7 @@ header {
 }
 #outPopUp {
   position: absolute;
-  width: 500px;
+  width: 800px;
   height: 300px;
   z-index: 15;
   top: 50%;
@@ -72,10 +72,10 @@ font-weight:300;
   opacity:10;
 }
 </style>
-<title>Update Depot</title>
+<title>Search Trip</title>
 </head>
 <body><header>
-<h1> Update Depot's </h1>
+<h1>Search Trip</h1>
 <nav class="w3-bar w3-black" >
   <a href="displaydepo.html" class="w3-button w3-bar-item">Depo Management</a>
   <a href="displayemployee.html" class="w3-button w3-bar-item">Employee Management</a>
@@ -90,18 +90,33 @@ font-weight:300;
 </header>
 <div id="outPopUp">
 <table>
-<tr><td></td><td>
-<div id="a1"></div></td></tr>
-<tr><td><label class="lab1" for="depoNo">Depot: </label></td>
-<td>
-<div id="deposeldiv">
-</div>
-</td></tr>
-<tr><td><label class="lab1" for="location">Depo Location: </label></td>
-<td><input type="text" id="location"></input></td></tr>
 <tr><td>
-<button class="w3-button w3-black" id="updatebtn" onclick="updateDepo()">Update</button></td></tr>
+<label class="lab1" for="tripId">Trip ID: </label></td>
+<td>
+<div id="tripdiv"></div>
+</td></tr>
+<tr><td>
+<label class="lab1" for="tripDate">Trip Date: </label></td>
+<td><input type="date" id="tripDate"></input></td></tr>
+<tr><td>
+<label class="lab1" for="tripTime">Trip Time: </label></td>
+<td><input type="time" id="tripTime"></input></td></tr>
+<tr><td><label class="lab1" for="busNo">Bus No.: </label></td>
+<td>
+<div id="busdiv">
+</div></td></tr>
+<tr><td>
+<label class="lab1" for="price">Trip price: </label></td>
+<td><input type="number" id="price"></input></td></tr>
+<tr><td></td><td>
+<button class="w3-button w3-black" id="searchbtn" onclick="searchtrip()">Search</button></td></tr>
 </table>
+
+<div style="font-weight:600;opacity:1;background-color:#000;color:#fff;width:600px;" id="resultArea">
+<table id="tripresultTable">
+
+</table>
+</div>
 </div>
 </body>
 </html>

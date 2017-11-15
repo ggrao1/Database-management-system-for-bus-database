@@ -9,10 +9,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
     "ticketNo",
     "busNo",
-    "price",
     "passengerId",
-    "toStop",
-    "fromStop"
+    "tripId",
+    "status"
 })
 public class Ticket {
 
@@ -20,14 +19,12 @@ public class Ticket {
     private int ticketNo;
     @JsonProperty("busNo")
     private int busNo;
-    @JsonProperty("price")
-    private int price;
     @JsonProperty("passengerId")
     private int passengerId;
-    @JsonProperty("toStop")
-    private String toStop;
-    @JsonProperty("fromStop")
-    private String fromStop;
+    @JsonProperty("tripId")
+    private int tripId;
+    @JsonProperty("status")
+    private String status;
 
     @JsonProperty("ticketNo")
     public int getTicketNo() {
@@ -49,16 +46,6 @@ public class Ticket {
         this.busNo = busNo;
     }
 
-    @JsonProperty("price")
-    public int getPrice() {
-        return price;
-    }
-
-    @JsonProperty("price")
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
     @JsonProperty("passengerId")
     public int getPassengerId() {
         return passengerId;
@@ -69,24 +56,24 @@ public class Ticket {
         this.passengerId = passengerId;
     }
 
-    @JsonProperty("toStop")
-    public String getToStop() {
-        return toStop;
+    @JsonProperty("tripId")
+    public int getTripId() {
+        return tripId;
     }
 
-    @JsonProperty("toStop")
-    public void setToStop(String toStop) {
-        this.toStop = toStop;
+    @JsonProperty("tripId")
+    public void setTripId(int tripId) {
+        this.tripId = tripId;
     }
 
-    @JsonProperty("fromStop")
-    public String getFromStop() {
-        return fromStop;
+    @JsonProperty("status")
+    public String getStatus() {
+        return status;
     }
 
-    @JsonProperty("fromStop")
-    public void setFromStop(String fromStop) {
-        this.fromStop = fromStop;
+    @JsonProperty("status")
+    public void setStatus(String status) {
+        this.status = status;
     }
 
 }
