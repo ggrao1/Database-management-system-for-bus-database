@@ -318,7 +318,7 @@ $.ajax({
 
 function bookTicket(tripId,busNo){
 	$("#outPopUp").empty();
-	$("#outPopUp").append("<table><tr><td></td><td><div id=\"a1\"></div></td></tr><tr><td><tr><td><label class=\"lab1\" for=\"passengerId\">Select Passenger to Update</label></td><td><div id=\"passengerdiv\"></div></td></tr><tr><td></td><td><button class=\"w3-button w3-black\" id=\"updatebtn\" onclick=\"confirmBooking("+tripId+","+busNo+")\">Confirm</button></td></tr></table>");
+	$("#outPopUp").append("<table><tr><td></td><td><div id=\"a1\"></div></td></tr><tr><td><tr><td><label class=\"lab1\" for=\"passengerId\">Select Passenger</label></td><td><div id=\"passengerdiv\"></div></td></tr><tr><td></td><td><button class=\"w3-button w3-black\" id=\"updatebtn\" onclick=\"confirmBooking("+tripId+","+busNo+")\">Confirm</button></td></tr></table>");
 
 	$("#passengerdiv").empty();
 	$("#a1").append( "<option value=\"\"> Passenger Id | Passenger Name | Passenger Phone | Passenger Age |");
