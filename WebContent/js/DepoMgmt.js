@@ -63,7 +63,7 @@ $.ajax({
 					for(i=0;i<depoArray.length;i++)
 					{
 						var depo=depoArray[i];
-						$("#deporesltTable").append('<tr><td>'+" "+depo.depoNo+" "+'</td><td>'+" "+depo.location+" "+'</td></tr>');
+						$("#deporesltTable").append('<tr><td>'+" D-"+depo.depoNo+" "+'</td><td>'+" "+depo.location+" "+'</td></tr>');
 					}
 
 		 },
@@ -92,7 +92,7 @@ $.ajax({
 					for(i=0;i<depoArray.length;i++)
 					{
 						var depo=depoArray[i];
-						$("#depoNo").append("<option value=\""+depo.depoNo+"\"> "+depo.depoNo+"</option>");
+						$("#depoNo").append("<option value=\""+depo.depoNo+"\"> D-"+depo.depoNo+"</option>");
 					}
 					
 			    

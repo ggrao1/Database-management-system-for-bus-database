@@ -91,10 +91,10 @@ $.ajax({
 					{
 						var trip=tripArray[i];
 						if(trip.availableSeats>0){
-						$("#tripresultTable").append('<tr><td>'+trip.tripId+'</td><td>'+trip.tripDate+'</td><td>'+trip.tripTime+'</td><td>'+trip.busNo+'</td><td>'+trip.price+'</td><td>'+trip.fromStop+'</td><td>'+trip.toStop+'</td><td>'+trip.availableSeats+'</td><td><button class="w3-button w3-grey" id="bookticketBtn" onclick="bookTicket('+trip.tripId+','+trip.busNo+')">Book</button></td></tr>');
+						$("#tripresultTable").append('<tr><td>'+"TP-"+trip.tripId+'</td><td>'+trip.tripDate+'</td><td>'+trip.tripTime+'</td><td>'+"B-"+trip.busNo+'</td><td>'+trip.price+'</td><td>'+trip.fromStop+'</td><td>'+trip.toStop+'</td><td>'+trip.availableSeats+'</td><td><button class="w3-button w3-grey" id="bookticketBtn" onclick="bookTicket('+trip.tripId+','+trip.busNo+')">Book</button></td></tr>');
 						}
 						else{
-							$("#tripresultTable").append('<tr><td>'+trip.tripId+'</td><td>'+trip.tripDate+'</td><td>'+trip.tripTime+'</td><td>'+trip.busNo+'</td><td>'+trip.price+'</td><td>'+trip.fromStop+'</td><td>'+trip.toStop+'</td><td>0</td><td><b style="color:red;">FULL</b></td></tr>');
+							$("#tripresultTable").append('<tr><td>'+"TP-"+trip.tripId+'</td><td>'+trip.tripDate+'</td><td>'+trip.tripTime+'</td><td>'+"B-"+trip.busNo+'</td><td>'+trip.price+'</td><td>'+trip.fromStop+'</td><td>'+trip.toStop+'</td><td>0</td><td><b style="color:red;">FULL</b></td></tr>');
 						}
 					}
 		 },
@@ -153,7 +153,7 @@ $.ajax({
 					for(i=0;i<tripArray.length;i++)
 					{
 						var trip=tripArray[i];
-						$("#tripresultTable").append('<tr><td>'+trip.tripId+'</td><td>'+trip.tripDate+'</td><td>'+trip.tripTime+'</td><td>'+trip.busNo+'</td><td>'+trip.price+'</td></tr>');
+						$("#tripresultTable").append('<tr><td>'+"TP-"+trip.tripId+'</td><td>'+trip.tripDate+'</td><td>'+trip.tripTime+'</td><td>'+"B-"+trip.busNo+'</td><td>'+trip.price+'</td></tr>');
 					}
 
 		 },
@@ -179,7 +179,7 @@ $.ajax({
 					for(i=0;i<tripArray.length;i++)
 					{
 						var trip=tripArray[i];
-						$("#tripId").append("<option value=\""+trip.tripId+"\">"+trip.tripId+"</option>");
+						$("#tripId").append("<option value=\""+trip.tripId+"\">TP-"+trip.tripId+"</option>");
 					}
 		 },
 		 error:function(err){
@@ -205,7 +205,7 @@ $.ajax({
 					for(i=0;i<tripArray.length;i++)
 					{
 						var trip=tripArray[i];
-						$("#tripId").append("<option value=\""+trip.tripId+"\">| "+trip.tripId+" | "+trip.tripDate+" | "+trip.tripTime+"  | "+trip.busNo+" | "+trip.price+" | </option>");
+						$("#tripId").append("<option value=\""+trip.tripId+"\">| TP-"+trip.tripId+" | "+trip.tripDate+" | "+trip.tripTime+"  | B-"+trip.busNo+" | "+trip.price+" | </option>");
 					}
 		 },
 		 error:function(err){
@@ -327,7 +327,7 @@ function bookTicket(tripId,busNo){
 	for(i=0;i<passArray.length;i++)
 	{
 		var pass=passArray[i];
-		$("#passengerId").append("<option value=\""+pass.passengerId+"\">"+pass.passengerId+" | "+pass.name+" | "+pass.phone+" | "+pass.age+"</option>");
+		$("#passengerId").append("<option value=\""+pass.passengerId+"\">P-"+pass.passengerId+" | "+pass.name+" | "+pass.phone+" | "+pass.age+"</option>");
 	}
 }
 

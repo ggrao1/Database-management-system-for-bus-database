@@ -81,7 +81,7 @@ $.ajax({
 					for(i=0;i<ticketArray.length;i++)
 					{
 						var ticket=ticketArray[i];
-						$("#ticketresltTable").append('<tr><td>'+" "+ticket.ticketNo+" "+'</td><td>'+" "+ticket.passengerId+" "+'</td><td>'+" "+ticket.tripId+" "+'</td><td>'+" "+ticket.status+" "+'</td></tr>');
+						$("#ticketresltTable").append('<tr><td>'+" TK-"+ticket.ticketNo+" "+'</td><td>'+" P-"+ticket.passengerId+" "+'</td><td>'+" TP-"+ticket.tripId+" "+'</td><td>'+" "+ticket.status+" "+'</td></tr>');
 					}
 
 		 },
@@ -111,7 +111,7 @@ $.ajax({
 					for(i=0;i<busArray.length;i++)
 					{
 						var bus=busArray[i];
-						$("#busNo").append("<option value=\""+bus.busNo+"\">"+bus.busNo+"</option>");
+						$("#busNo").append("<option value=\""+bus.busNo+"\"> B-"+bus.busNo+"</option>");
 					}
 		 },
 		 error:function(err){
@@ -138,7 +138,7 @@ $.ajax({
 					for(i=0;i<passArray.length;i++)
 					{
 						var pass=passArray[i];
-						$("#passengerId").append("<option value=\""+pass.passengerId+"\">"+pass.passengerId+"</option>");
+						$("#passengerId").append("<option value=\""+pass.passengerId+"\">P-"+pass.passengerId+"</option>");
 					}
 
 		 },
@@ -167,7 +167,7 @@ $.ajax({
 					for(i=0;i<ticketArray.length;i++)
 					{
 						var ticket=ticketArray[i];
-						$("#ticketNo").append("<option value=\""+ticket.ticketNo+"\">"+ticket.ticketNo+"</option>");
+						$("#ticketNo").append("<option value=\""+ticket.ticketNo+"\">T-"+ticket.ticketNo+"</option>");
 					}
 
 		 },
@@ -197,7 +197,7 @@ $.ajax({
 					{
 						var ticket=ticketArray[i];
 						if(ticket.status=="Booked")
-						$("#ticketNo").append("<option value=\""+ticket.ticketNo+"\">| "+ticket.ticketNo+" | "+ticket.passengerId+" | "+ticket.tripId+" | "+ticket.status+" | </option>");
+						$("#ticketNo").append("<option value=\""+ticket.ticketNo+"\">| TK-"+ticket.ticketNo+" | P-"+ticket.passengerId+" | TP-"+ticket.tripId+" | "+ticket.status+" | </option>");
 					}
 
 		 },

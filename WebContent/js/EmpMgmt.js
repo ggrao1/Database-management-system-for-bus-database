@@ -91,7 +91,7 @@ $.ajax({
 					for(i=0;i<empArray.length;i++)
 					{
 						var emp=empArray[i];
-						$("#empresltTable").append('<tr><td>'+emp.empId+'</td><td>'+emp.empName+'</td><td>'+emp.empDob+'</td><td>'+emp.busNo+'</td><td>'+emp.empSex+'</td><td>'+emp.empSalary+'</td></tr>');
+						$("#empresltTable").append('<tr><td>'+" E-"+emp.empId+'</td><td>'+emp.empName+'</td><td>'+emp.empDob+'</td><td>'+" B-"+emp.busNo+'</td><td>'+emp.empSex+'</td><td>'+emp.empSalary+'</td></tr>');
 					}
 
 		 },
@@ -119,7 +119,7 @@ $.ajax({
 					for(i=0;i<empArray.length;i++)
 					{
 						var emp=empArray[i];
-						$("#empId").append("<option value=\""+emp.empId+"\">"+emp.empId+"</option>");
+						$("#empId").append("<option value=\""+emp.empId+"\">E-"+emp.empId+"</option>");
 					}
 		 },
 		 error:function(err){
@@ -145,7 +145,7 @@ $.ajax({
 					for(i=0;i<empArray.length;i++)
 					{
 						var emp=empArray[i];
-						$("#empId").append("<option value=\""+emp.empId+"\"> | "+emp.empId+" | "+emp.empName+" | "+emp.empDob+" | "+emp.busNo+" | "+emp.empSex+" | "+emp.empSalary+" | </option>");
+						$("#empId").append("<option value=\""+emp.empId+"\"> | E-"+emp.empId+" | "+emp.empName+" | "+emp.empDob+" | B-"+emp.busNo+" | "+emp.empSex+" | "+emp.empSalary+" | </option>");
 					}
 		 },
 		 error:function(err){

@@ -86,7 +86,7 @@ $.ajax({
 					for(i=0;i<busArray.length;i++)
 					{
 						var bus=busArray[i];
-						$("#busresltTable").append('<tr><td>'+" "+bus.busNo+" "+'</td><td>'+" "+bus.depoNo+" "+'</td><td>'+" "+bus.capacity+" "+'</td><td>'+" "+bus.fromStop+" "+'</td><td>'+" "+bus.toStop+" "+'</td></tr>');
+						$("#busresltTable").append('<tr><td>'+" B-"+bus.busNo+" "+'</td><td>'+" D-"+bus.depoNo+" "+'</td><td>'+" "+bus.capacity+" "+'</td><td>'+" "+bus.fromStop+" "+'</td><td>'+" "+bus.toStop+" "+'</td></tr>');
 					}
 
 		 },
@@ -115,7 +115,7 @@ $.ajax({
 					for(i=0;i<depoArray.length;i++)
 					{
 						var depo=depoArray[i];
-						$("#depoNo").append("<option value=\""+depo.depoNo+"\">| "+depo.depoNo+" | "+depo.location+"</option>");
+						$("#depoNo").append("<option value=\""+depo.depoNo+"\">| D-"+depo.depoNo+" | "+depo.location+"</option>");
 					}
 		 },
 		 error:function(err){
@@ -144,7 +144,7 @@ $.ajax({
 					for(i=0;i<busArray.length;i++)
 					{
 						var bus=busArray[i];
-						$("#busNo").append("<option value=\""+bus.busNo+"\">| "+bus.busNo+" | "+bus.depoNo+" | "+bus.capacity+" | "+bus.fromStop+" | "+bus.toStop+" | "+"</option>");
+						$("#busNo").append("<option value=\""+bus.busNo+"\">| B-"+bus.busNo+" | D-"+bus.depoNo+" | "+bus.capacity+" | "+bus.fromStop+" | "+bus.toStop+" | "+"</option>");
 					}
 		 },
 		 error:function(err){

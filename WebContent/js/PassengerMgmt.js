@@ -76,7 +76,7 @@ $.ajax({
 					for(i=0;i<passArray.length;i++)
 					{
 						var pass=passArray[i];
-						$("#passresltTable").append('<tr><td>'+pass.passengerId+'</td><td>'+pass.name+'</td><td>'+pass.phone+'</td><td>'+pass.age+'</td></tr>');
+						$("#passresltTable").append('<tr><td>'+" P-"+pass.passengerId+'</td><td>'+pass.name+'</td><td>'+pass.phone+'</td><td>'+pass.age+'</td></tr>');
 					}
 
 		 },
@@ -103,7 +103,7 @@ $.ajax({
 					for(i=0;i<passArray.length;i++)
 					{
 						var pass=passArray[i];
-						$("#passengerId").append("<option value=\""+pass.passengerId+"\">"+pass.passengerId+" | "+pass.name+" | "+pass.phone+" | "+pass.age+"</option>");
+						$("#passengerId").append("<option value=\""+pass.passengerId+"\">P-"+pass.passengerId+" | "+pass.name+" | "+pass.phone+" | "+pass.age+"</option>");
 					}
 		 },
 		 error:function(err){
